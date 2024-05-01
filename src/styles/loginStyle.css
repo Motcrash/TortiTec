@@ -10,14 +10,14 @@ html, body{
     place-items: center;
     grid-gap: 10px;
 }
+.item2 {
+    padding: 20px;
+    grid-row: 2/3;
+}
 .item1 {
     padding: 20px;
     text-align: center;
     grid-row: 1/2;
-}
-.item2 {
-    padding: 20px;
-    grid-row: 2/3;
 }
 .item3 {
     padding: 20px;

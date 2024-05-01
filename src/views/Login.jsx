@@ -25,7 +25,7 @@ export default function Login() {
             textLabel='Contraseña'
             />
             <ButtonComponent
-              label='Ingresar'
+              text='Ingresar'
               bgColor='#0077cc'
               txtColor='#fff'
               borderRadius={20}

@@ -4,6 +4,7 @@ import '../styles/inputComponentStyle.css'
 export default function InputComponent({height, width, type, hasLabel, textLabel}) {
   return (
     <div className='inputContainer'>
+        {/* Tiene o no un label */}
         {
           hasLabel ?
             <label className='lbl'>{textLabel}</label>

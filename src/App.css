@@ -5,9 +5,9 @@
   text-align: center;
 }
 .inputContainer{
+  display: flex;
   width: 200;
   height: 50;
-  display: flex;
   flex-direction: colum;
   justify-content: space-evenly;
 }

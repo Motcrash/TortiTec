@@ -1,7 +1,7 @@
 import React from 'react'
 
 export default function ButtonComponent({props}) {
-    const {label, bgColor, txtColor, borderRadius} = props;
+    const {text, bgColor, txtColor, borderRadius} = props;
     return (
     <button
         style={{
@@ -9,6 +9,6 @@ export default function ButtonComponent({props}) {
             color: txtColor,
             borderRadius,
         }}
-    >{label}</button>
+    >{text}</button>
   )
 }
