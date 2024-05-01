@@ -1,0 +1,19 @@
+.inputContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+.lbl{
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    width:100px;
+}
+.ipt{
+    display: flex;
+    justify-content: end;
+}
+.ada{
+    
+}
