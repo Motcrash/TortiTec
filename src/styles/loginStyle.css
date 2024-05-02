@@ -2,25 +2,36 @@ html, body{
     height: 100%;
     width: 100%;
 }
+header{
+    background-color: #0077cc;
+    width: 100%;
+}
+h1{
+    color: white;
+    font-weight: bold;
+}
 .mainContainer{
     height: 100%;
     width: 100%;
-    display: grid;
-    grid-template-rows: repeat(3, 1fr);
     place-items: center;
-    grid-gap: 10px;
+}
+.loginFormContainer{
+    background-color: #cce2f0;
+    width: 350px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 500px;
 }
 .item2 {
     padding: 20px;
-    grid-row: 2/3;
 }
 .item1 {
     padding: 20px;
     text-align: center;
-    grid-row: 1/2;
 }
 .item3 {
     padding: 20px;
     text-align: center;
-    grid-row: 3/20;
 }
