@@ -18,7 +18,7 @@ export default function Login() {
               width={200}
               type='text'
               hasLabel={true}
-              text='Usuario'
+              text='Usuario:'
               Placeholder='example@mail.com'
               />
               <InputComponent
@@ -26,7 +26,7 @@ export default function Login() {
               width={200}
               type='password'
               hasLabel={true}
-              text='Contraseña'
+              text='Contraseña:'
               Placeholder='Password'
               />
               <ButtonComponent
