@@ -5,6 +5,7 @@ html, body{
 header{
     background-color: #0077cc;
     width: 100%;
+    padding: 13px;
 }
 h1{
     color: white;
@@ -22,16 +23,18 @@ h1{
     display: flex;
     height: 500px;
     flex-direction: column;
-    justify-content: space-around;
+    
+    margin-top: 30px;
 }
 .item2 {
-    padding: 20px;
+    height: 180px
+    
 }
 .item1 {
-    padding: 20px;
+   
     text-align: center;
 }
 .item3 {
-    padding: 20px;
+    
     text-align: center;
 }
