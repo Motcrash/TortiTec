@@ -34,8 +34,9 @@ export default function Login() {
                 bgColor='#0077cc'
                 txtColor='#fff'
                 borderRadius={15}
-                height={30}
+                height={35}
                 width={100}
+                margin={40}
               />
           </div>
         </div>
