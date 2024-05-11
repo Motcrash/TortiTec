@@ -1,5 +1,6 @@
 import React from 'react'
 import userImg from '../assets/img/user.png';
+import logoImg from '../assets/img/caguaSoft.png';
 import InputComponent from '../components/InputComponent';
 import '../styles/loginStyle.css'
 import ButtonComponent from '../components/ButtonComponent'
@@ -8,7 +9,7 @@ export default function Login() {
   return (
     <div className='mainContainer'>
         <header>
-          
+          <img src='/src/assets/img/caguaSoft.png' alt='logoImg' className='itenLogo' />
           <h1 className='item1'>Sistema de Tortitec</h1>
         </header>
         <div className='loginFormContainer'>
