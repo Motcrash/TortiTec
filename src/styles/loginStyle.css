@@ -2,13 +2,14 @@ html, body{
     height: 100%;
     width: 100%;
 }
-header{
+.header{
     display: flex;
     align-items: center;
-    justify-content: space-between; /* Esto distribuirá los elementos a los extremos del header */
-    background-color: #0077cc;
-    width: 100%;
-    padding: 20px;
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    height: 60px;
 }
 body{
     background: linear-gradient(#d9e1ff, #f5f5f8);
@@ -39,14 +40,18 @@ h1{
     
 }
 .item1 {
+    width: 100%;
     text-align: center;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
 }
 .item3 {
     padding-top: 40px;
     text-align: center;
 }
-.itenLogo{
-    height: 70px;
-    width: 110px;
-    padding-left: 25px;
+.itemLogo{
+    width: 150px; /* ajusta el tamaño según tus necesidades */
+    position: absolute;
+    padding: 10px;
 }

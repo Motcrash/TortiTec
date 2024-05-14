@@ -4,14 +4,13 @@ import logoImg from '../assets/img/caguaSoft.png';
 import InputComponent from '../components/InputComponent';
 import '../styles/loginStyle.css'
 import ButtonComponent from '../components/ButtonComponent'
+import HeaderComponent from '../components/HeaderComponent';
 
 export default function Login() {
   return (
     <div className='mainContainer'>
-        <header>
-          <img src='/src/assets/img/caguaSoft.png' alt='logoImg' className='itenLogo' />
-          <h1 className='item1'>Sistema de Tortitec</h1>
-        </header>
+        <HeaderComponent />
+        
         <div className='loginFormContainer'>
           <img src={userImg} alt='userImg' className='item2'/>
           <div className='item3'>
