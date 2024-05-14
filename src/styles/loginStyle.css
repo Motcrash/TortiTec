@@ -31,6 +31,7 @@ h1{
     height: 500px;
     flex-direction: column;
     margin-top: 70px;
+    
 }
 .item2 {
     height: 180px;
@@ -38,7 +39,6 @@ h1{
     
 }
 .item1 {
-
     text-align: center;
 }
 .item3 {

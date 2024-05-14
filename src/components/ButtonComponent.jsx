@@ -1,8 +1,10 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 export default function ButtonComponent(props) {
     const {text, bgColor, txtColor, borderRadius, height, width, margin} = props;
     return (
+       
     <button
         style={{
             backgroundColor:bgColor,
@@ -11,7 +13,7 @@ export default function ButtonComponent(props) {
             height,
             width,
             border: 0,
-            margin
+            margin,
         }}
     >{text}</button>
   )
