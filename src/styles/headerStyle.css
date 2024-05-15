@@ -1,0 +1,21 @@
+.header{
+    display: flex;
+    align-items: center;
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    height: 60px;
+}
+.item1 {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+}
+.itemLogo{
+    width: 150px;
+    position: absolute;
+    padding: 10px;
+}
