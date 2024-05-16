@@ -9,13 +9,15 @@ import SalesTableComponent from '../components/SalesTableComponent'
 
 export default function Main() {
   const [products, setProducts] = useState([
-    { id: 1, name: 'Producto 1', image: '/src/assets/img/tortillas.jpg', quantity: 0 },
-    { id: 2, name: 'Producto 2', image: '/src/assets/img/tortillas.jpg', quantity: 0 },
-    { id: 3, name: 'Producto 1', image: '/src/assets/img/tortillas.jpg', quantity: 0 },
-    { id: 4, name: 'Producto 2', image: '/src/assets/img/tortillas.jpg', quantity: 0 },
-    { id: 5, name: 'Producto 1', image: '/src/assets/img/tortillas.jpg', quantity: 0 },
-    { id: 6, name: 'Producto 2', image: '/src/assets/img/tortillas.jpg', quantity: 0 },
-    // Agrega más productos según sea necesario
+    { id: 1, name: '1Kg de tortillas', image: '/src/assets/img/tortillas.jpg', price: "$25.00", quantity: 0 },
+    { id: 1, name: '0.5Kg de tortillas', image: '/src/assets/img/tortillas.jpg', price: "$15.00", quantity: 0 },
+    { id: 3, name: 'Paquete de frijoles', image: '/src/assets/img/tortillas.jpg', price: "$25.00", quantity: 0 },
+    { id: 4, name: '0.5Kg de chicharrón', image: '/src/assets/img/tortillas.jpg', price: "$130.00", quantity: 0 },
+    { id: 5, name: '250gr de chicharrón', image: '/src/assets/img/tortillas.jpg', price: "$80.00", quantity: 0 },
+    { id: 6, name: 'Conito de cajeta', image: '/src/assets/img/tortillas.jpg', price: "$20.00", quantity: 0 },
+    { id: 8, name: 'Chiles rellenos', image: '/src/assets/img/tortillas.jpg', price: "$30.00", quantity: 0 },
+    { id: 9, name: 'Requesón', image: '/src/assets/img/tortillas.jpg', price: "$25.00", quantity: 0 },
+    { id: 10, name: 'Chile colorado', image: '/src/assets/img/tortillas.jpg', price: "$28.00", quantity: 0 }, 
   ]);
 
   const handleIncrease = (product) => {

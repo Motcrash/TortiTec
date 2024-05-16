@@ -4,7 +4,7 @@ html, body{
 }
 
 body{
-    background: linear-gradient(#d9e1ff, #f5f5f8); /*Define el color en todas las vistas*/
+   background-color: #e9edf0; /*Define el color en todas las vistas*/
  }
 h1{
     color: white;
