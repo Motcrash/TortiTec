@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 const Product = ({ product, onIncrease, onDecrease }) => {
   return (
     <div className="product">

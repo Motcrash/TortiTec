@@ -1,6 +1,5 @@
 import React from 'react'
 import userImg from '../assets/img/user.png';
-import logoImg from '../assets/img/caguaSoft.png';
 import InputComponent from '../components/InputComponent';
 import '../styles/loginStyle.css'
 import '../styles/headerStyle.css'
