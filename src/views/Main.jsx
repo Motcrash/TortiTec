@@ -70,7 +70,7 @@ export default function Main() {
 
     {/*Tabla*/}
     <div className='table-container'>
-        <div className="table-container">
+          <h1>Tabla</h1>
       <table>
         <thead>
           <tr>
@@ -93,7 +93,6 @@ export default function Main() {
         </tbody>
       </table>
       <div className="total">Total: ${total.toFixed(2)}</div>
-    </div>
     </div>
     </div>
     </>
