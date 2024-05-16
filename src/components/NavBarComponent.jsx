@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import '../styles/navBarStyle.css'
 
 const links = [
   {
@@ -14,12 +15,15 @@ const links = [
 
 const NavBarComponent = () => {
   return (
-    <h1>g</h1>
-   /* <div>
+    <>
+    <nav className='navegacion'>
+      <ul className='lista'>
       {links.map((link, index) => (
-        <Link key={index} to={link.href}>{link.name}</Link>
+        <li> <Link key={index} to={link.href}>{link.name}</Link></li>
       ))}
-    </div> */
+      </ul>
+    </nav> 
+    </>
   );
 };
 
