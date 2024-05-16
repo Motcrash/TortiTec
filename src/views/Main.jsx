@@ -34,11 +34,13 @@ export default function Main() {
     <div className='main-content'>
       <div className='product-container'>
       <h1>Lista de Productos</h1>
+      <div className='flex-product-container'>
       <ProductList
         products={products}
         onIncrease={handleIncrease}
         onDecrease={handleDecrease}
       />
+      </div>
     </div>
     <div className='table-container'>
     <h1>Tabla</h1>
