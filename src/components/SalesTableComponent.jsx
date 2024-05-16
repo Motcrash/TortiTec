@@ -1,22 +1,14 @@
 import React, {useState, useEffect} from 'react'
+import ProductList from '../components/ProductListComponent'
 
 function SalesTableComponent() {
-    const [items, setItems] = useState([]);
-    const [total, setTotal] = useState(0);
+   /* const [items, setItems] = useState([]);
+    const [total, setTotal] = useState(0); */
 
-    /*useEffect(() => {
-        // Aquí puedes hacer una solicitud a tu base de datos para obtener los datos de compra
-        // Por ejemplo, usando axios:
-        axios.get('URL_DE_TU_API')
-          .then(response => {
-            setItems(response.data.items);
-            setTotal(response.data.total);
-          })
-          .catch(error => {
-            console.error('Error fetching data:', error);
-          });
-      }, []); // Se ejecutará solo una vez al montar el componente
-      */
+    useEffect(() => {
+      
+      }, []); 
+      
   return (
     <div className="table-container">
       <table>
@@ -30,18 +22,17 @@ function SalesTableComponent() {
           </tr>
         </thead>
         <tbody>
-          {items.map(item => (
-            <tr key={item.id}>
-              <td>{item.codigo}</td>
-              <td>{item.descripcion}</td>
-              <td>{item.cantidad}</td>
-              <td>{item.precio_unitario}</td>
-              <td>{item.subtotal}</td>
+            <tr key='5'>
+              <td>1</td>
+              <td>Un kilogramo de tortillas de maíz</td>
+              <td>0</td>
+              <td>25.00</td>
+              <td>0</td>
             </tr>
-          ))}
+         
         </tbody>
       </table>
-      <div className="total">Total: {total}</div>
+      <div className="total">Total: sexo</div>
     </div>
   );
 };
