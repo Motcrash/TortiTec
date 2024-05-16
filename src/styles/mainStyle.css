@@ -42,7 +42,10 @@
 }
 
 /*Tabla*/
-
+table{
+  padding: 10px;
+  margin: 20px;
+}
 .table-container table {
     width: 100%;
     border-collapse: collapse;

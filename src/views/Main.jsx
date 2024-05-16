@@ -84,8 +84,8 @@ export default function Main() {
         {products.map(product => (
             <tr key={product.id}>
               <td>{product.name}</td>
-              <td>{product.quantity}</td>
               <td>{'$'+product.price+".00"}</td>
+              <td>{product.quantity}</td>
               <td>{'$'+(product.price * product.quantity)+".00"}</td>
             </tr>
           ))}
