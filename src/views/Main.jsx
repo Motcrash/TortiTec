@@ -14,15 +14,15 @@ export default function Main() {
   }, [ProductList])
 
   const [products, setProducts] = useState([
-    { id: 1, name: '1Kg de tortillas', image: '/src/assets/img/tortillas.jpg', price: 25.00, quantity: 0, description: 's' },
-    { id: 2, name: '0.5Kg de tortillas', image: '/src/assets/img/tortillas.jpg', price: 15.00, quantity: 0, description: 'e' },
-    { id: 3, name: 'Paquete de frijoles', image: '/src/assets/img/tortillas.jpg', price: 25.00, quantity: 0, description: 'x'},
-    { id: 4, name: '0.5Kg de chicharrón', image: '/src/assets/img/tortillas.jpg', price: 130.00, quantity: 0, description: 'o'},
-    { id: 5, name: '250gr de chicharrón', image: '/src/assets/img/tortillas.jpg', price: 80.00, quantity: 0, description: 'o' },
-    { id: 6, name: 'Conito de cajeta', image: '/src/assets/img/tortillas.jpg', price: 20.00, quantity: 0, description: 'r' },
-    { id: 8, name: 'Chiles rellenos', image: '/src/assets/img/tortillas.jpg', price: 30.00, quantity: 0, description: 'a' },
-    { id: 9, name: 'Requesón', image: '/src/assets/img/tortillas.jpg', price: 25.00, quantity: 0, description: 'l' },
-    { id: 10, name: 'Chile colorado', image: '/src/assets/img/tortillas.jpg', price: 28.00, quantity: 0, description: 'uwu' }, 
+    { id: 1, name: '1Kg de tortillas', image: '/src/assets/img/tortillas.jpg', price: 25.00, quantity: 0},
+    { id: 2, name: '0.5Kg de tortillas', image: '/src/assets/img/tortillas-2.jpg', price: 15.00, quantity: 0},
+    { id: 3, name: 'Paquete de frijoles', image: '/src/assets/img/frijoles.jpg', price: 25.00, quantity: 0},
+    { id: 4, name: '0.5Kg de chicharrón', image: '/src/assets/img/chicharron.jpg', price: 130.00, quantity: 0},
+    { id: 5, name: '250gr de chicharrón', image: '/src/assets/img/chicharron-2.jpg', price: 80.00, quantity: 0},
+    { id: 6, name: 'Conito de cajeta', image: '/src/assets/img/cajeta.jpg', price: 20.00, quantity: 0},
+    { id: 8, name: 'Chiles rellenos', image: '/src/assets/img/chiles.jpg', price: 30.00, quantity: 0},
+    { id: 9, name: 'Requesón', image: '/src/assets/img/requeson.jpg', price: 25.00, quantity: 0},
+    { id: 10, name: 'Chile colorado', image: '/src/assets/img/chileColorado.jpg', price: 28.00, quantity: 0}, 
   ]);
 
   const handleIncrease = (product) => {
