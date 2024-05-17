@@ -47,7 +47,7 @@ export default function Main() {
   return (
     <>
     <HeaderComponent />
-  
+    <NavBarComponent />
     <div className='main-content'>
       <div className='product-container'>
       <h1>Lista de Productos</h1>

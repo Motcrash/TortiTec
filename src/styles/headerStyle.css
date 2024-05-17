@@ -3,9 +3,10 @@
     align-items: center;
     background-color: #333;
     color: white;
-    padding: 10px;
     text-align: center;
     height: 60px;
+    padding: 10px 20px;
+    width: 100%;
 }
 .item1 {
     width: 100%;
@@ -18,4 +19,24 @@
     width: 150px;
     position: absolute;
     padding: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .item1 {
+    order: 2;
+    width: 100%;
+    padding: 10px 0;
+  }
+
+  .itemLogo {
+    order: 1;
+    width: auto;
+    padding: 10px 0;
+  }
 }
