@@ -5,6 +5,7 @@ import '../styles/loginStyle.css'
 import '../styles/headerStyle.css'
 import ButtonComponent from '../components/ButtonComponent'
 import HeaderComponent from '../components/HeaderComponent';
+import { Link } from 'react-router-dom';
 
 export default function Login() {
   return (
@@ -30,6 +31,9 @@ export default function Login() {
               text='Contraseña:'
               Placeholder='Password'
               />
+
+              {/* Lo del button es temporal por lo pronto */}
+              <Link to="/main" >
               <ButtonComponent
                 text='Ingresar'
                 bgColor='#0077cc'
@@ -39,6 +43,7 @@ export default function Login() {
                 width={100}
                 margin={40}
               />
+              </Link>
           </div>
         </div>
     </div>
