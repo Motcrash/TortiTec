@@ -12,7 +12,7 @@ function Detail() {
     // { id: 3, name: 'Paquete de frijoles', image: '/src/assets/img/frijoles.jpg', price: 25.00, quantity: 0},
     // { id: 4, name: '0.5Kg de chicharrón', image: '/src/assets/img/chicharron.jpg', price: 130.00, quantity: 0},
   ]);
-  
+
   return (
     <div>
     <HeaderComponent />
@@ -24,9 +24,9 @@ function Detail() {
     <table>
       <thead>
         <tr>
-          <th>Id Venta</th>
-          <th>Fecha De Venta</th>
-          <th>Detalles</th>
+          <th>Nombre</th>
+          <th>Cantidad</th>
+          <th>Subtotal</th>
         </tr>
       </thead>
       <tbody>
