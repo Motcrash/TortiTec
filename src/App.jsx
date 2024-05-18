@@ -3,6 +3,7 @@ import Login from './views/Login';
 import Main from "./views/Main";
 import Stock from "./views/Stock";
 import Sales from "./views/Sales";
+import Detail from "./views/Detail";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Route path="/main" element={<Main />} />
         <Route path="/stock" element={<Stock />} />
         <Route path="/sales" element={<Sales />} />
+        <Route path="/detail" element={<Detail />} />
       </Routes>
     </Router>
   );
