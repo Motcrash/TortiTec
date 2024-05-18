@@ -34,7 +34,7 @@ function Sales() {
             <td>{product.id}</td>
             <td>{product.fecha}</td>
             <td>
-            <div> <Link to='/main'> <button>Detalle de Venta</button> </Link></div>
+            <div> <Link to='/detail'> <button>Detalle de Venta</button> </Link></div>
             </td>
           </tr>
         ))}

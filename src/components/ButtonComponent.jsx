@@ -14,12 +14,10 @@ export default function ButtonComponent(props) {
             width,
             border: 0,
             margin,
-            border: 0,
-            margin,
             cursor: 'pointer', 
             transition: 'background-color 0.3s', 
             ':hover': {
-                backgroundColor: '#005fa3', // Cambia el color de fondo al pasar el mouse sobre el botón
+                backgroundColor: '#005fa3', 
             }
         }}
     >{text}</button>
