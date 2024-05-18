@@ -69,7 +69,7 @@ function Stock() {
       </table>
     </div>
     </div>
-      
+       
   )
 }
 
