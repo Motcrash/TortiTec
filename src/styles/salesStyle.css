@@ -1,0 +1,35 @@
+/*Tabla*/
+table{
+    padding: 10px;
+    margin: 20px;
+  }
+
+  .table-sales-container h1{
+    padding: 15px;
+    padding-bottom: 10px;
+    color: rgb(2, 0, 71);
+}
+
+.table-sales-container table {
+    width: 90%;
+    border-collapse: collapse;
+}
+
+.table-sales-container th,
+.table-sales-container td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.table-sales-container th {
+    background-color: #f2f2f2;
+}
+
+.table-sales-container tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.table-sales-container tbody tr:hover {
+    background-color: #ddd;
+}

@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import { Link } from 'react-router-dom';
+import '../styles/salesStyle.css'
 import HeaderComponent from '../components/HeaderComponent'
 import NavBarComponent from '../components/NavBarComponent'
 
@@ -13,21 +14,18 @@ function Sales() {
   ]);
 
   return (
-    <div>
+    <div >
     <HeaderComponent />
     <NavBarComponent />  
 
-  {/* Tabla */}
-    <div className='table-container'>
-        <h1>Tabla</h1>
+    <div className='table-sales-container'>
+    <h1>Ventas</h1>
     <table>
       <thead>
         <tr>
           <th>Id Venta</th>
           <th>Fecha De Venta</th>
-          <th> 
-            <div> <Link to='/main'> <button>Detalles</button> </Link></div>
-          </th>
+          <th>Detalles</th>
         </tr>
       </thead>
       <tbody>
@@ -35,7 +33,9 @@ function Sales() {
           <tr key={product.id}>
             <td>{product.id}</td>
             <td>{product.fecha}</td>
-            <td>{product.detalle}</td>
+            <td>
+            <div> <Link to='/main'> <button>Detalle de Venta</button> </Link></div>
+            </td>
           </tr>
         ))}
 
