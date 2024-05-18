@@ -114,7 +114,7 @@ table{
     margin-bottom: 5px;
 }
 
-.product button {
+.product button{
     padding: 5px 10px;
     margin-bottom: 10px;
     font-size: 14px;
@@ -127,4 +127,25 @@ table{
 
 .product button:hover {
     background-color: #0056b3;
+}
+
+/* Button para registro y limpiar */
+.button-main{
+  display: flex;
+  flex-direction: column;
+}
+.button-main button{
+  padding: 10px 15px;
+  margin-top: 25px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.button-main button:hover {
+  background-color: #0056b3;
 }

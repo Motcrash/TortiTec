@@ -3,6 +3,7 @@ import '../styles/headerStyle.css'
 import '../styles/mainStyle.css'
 import HeaderComponent from '../components/HeaderComponent'
 import NavBarComponent from '../components/NavBarComponent'
+import ButtonComponent from '../components/ButtonComponent'
 import ProductList from '../components/ProductListComponent'
 import SalesTableComponent from '../components/SalesTableComponent'
 
@@ -41,6 +42,12 @@ export default function Main() {
     setProducts(updatedProducts);
   };
 
+
+  const clean = () => {
+    const updatedProducts = products.map((p) => ({ ...p, quantity: 0 }));
+    setProducts(updatedProducts);
+  };
+
    // Calcular el total de la venta
    const total = products.reduce((acc, product) => acc + (product.price * product.quantity), 0);
 
@@ -75,8 +82,8 @@ export default function Main() {
         <thead>
           <tr>
             <th>Nombre</th>
-            <th>Cantidad</th>
             <th>Precio Unitario</th>
+            <th>Cantidad</th>
             <th>Subtotal</th>
           </tr>
         </thead>
@@ -93,6 +100,11 @@ export default function Main() {
         </tbody>
       </table>
       <div className="total">Total: ${total.toFixed(2)}</div>
+
+      <div className='button-main'>
+      <button>Resgitrar venta</button>
+      <button onClick={clean}>Cancelar</button>
+      </div>
     </div>
     </div>
     </>
