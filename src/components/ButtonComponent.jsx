@@ -16,9 +16,8 @@ export default function ButtonComponent(props) {
             margin,
             border: 0,
             margin,
-            cursor: 'pointer', // Cambia el cursor a un puntero
-            transition: 'background-color 0.3s', // Agrega transición al cambio de color de fondo
-            // Reglas CSS para el estado de hover
+            cursor: 'pointer', 
+            transition: 'background-color 0.3s', 
             ':hover': {
                 backgroundColor: '#005fa3', // Cambia el color de fondo al pasar el mouse sobre el botón
             }
