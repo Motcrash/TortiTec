@@ -1,0 +1,42 @@
+/*Tabla*/
+table{
+    padding: 10px;
+    margin: 20px;
+  }
+.table-stock-container h1{
+    padding: 15px;
+    padding-bottom: 10px;
+    color: rgb(2, 0, 71);
+}
+.table-stock-container table {
+    width: 90%;
+    border-collapse: collapse;
+}
+
+.table-stock-container th,
+.table-stock-container td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+.table-stock-container th {
+    background-color: #f2f2f2;
+}
+
+.table-stock-container tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.table-stock-container tbody tr:hover {
+    background-color: #ddd;
+}
+.buttons-stock {
+    display: flex;
+    gap: 5px;
+}
+
+.buttons-stock button {
+    cursor: pointer;
+    padding: 5px 10px;
+}

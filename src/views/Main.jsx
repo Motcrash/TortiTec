@@ -58,7 +58,7 @@ export default function Main() {
               <div className="product" key={product.id}>
                 <img src={product.image} alt={product.name} />
                 <h3>{product.name}</h3>
-                <p>{'$'+product.price+".00"}</p>
+                <p>{'$'+product.price+'.00'}</p>
                 <p>Cantidad: {product.quantity}</p>
                 <button onClick={() => handleIncrease(product)}>Aumentar</button>
                 <button onClick={() => handleDecrease(product)}>Quitar</button>
