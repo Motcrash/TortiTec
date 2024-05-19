@@ -35,8 +35,7 @@ export default function Main() {
       const res = await axios.get(URIStock)
       const stock = res.data;
 
-      await details.map( detail => {
-        console.log('Entró a la funcion');
+      details.map( detail => {
         let i = 0;
         if (detail.quantity > stock[i].quantity) {
           console.log('No hay suficientes productos en inventario');
@@ -53,10 +52,12 @@ export default function Main() {
         clean();
       })
 
-      await axios.post(URISells, {
-        total: total,
-        details: details
-      });
+      if (total != 0) {
+        await axios.post(URISells, {
+          total: total,
+          details: details
+        });
+      }else return
     }
   
   useEffect(() => {
