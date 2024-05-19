@@ -1,17 +1,20 @@
 import React, {useEffect, useState} from 'react'
 import { Link } from 'react-router-dom';
-import '../styles/salesStyle.css'
+import '../styles/detailStyle.css'
 import HeaderComponent from '../components/HeaderComponent'
 import NavBarComponent from '../components/NavBarComponent'
+import ButtonComponent from '../components/ButtonComponent'
 
 function Detail() {
   // Temporal hasta tener la DataBase, fecha random
   const [products, setProducts] = useState([
-    { id: 1, fecha: '17-05-2021', detalle: 'ye' },
-    { id: 2, fecha: '17-05-2021', detalle: 'ye' },
-    // { id: 3, name: 'Paquete de frijoles', image: '/src/assets/img/frijoles.jpg', price: 25.00, quantity: 0},
-    // { id: 4, name: '0.5Kg de chicharrón', image: '/src/assets/img/chicharron.jpg', price: 130.00, quantity: 0},
+    {idVenta: 25, idProducto: 2, fecha: '17-05-2021', name: 'Chiles rellenos', quantity: 2, subtotal: 60},
+    {idVenta: 25, idProducto: 5, fecha: '17-05-2021', name: 'Requesón', quantity: 1, subtotal: 25},
+    {idVenta: 25, idProducto: 5, fecha: '17-05-2021', name: '1Kg de tortillas', quantity: 1, subtotal: 25},
   ]);
+
+  const [sale, setSale] = useState({idVenta: 25, products: 5, total: 110},);
+
 
   return (
     <div>
@@ -31,16 +34,28 @@ function Detail() {
       </thead>
       <tbody>
       {products.map(product => (
-          <tr key={product.id}>
-            <td>{product.id}</td>
-            <td>{product.fecha}</td>
-            <td>ss</td>
+          <tr key={product.idProducto}>
+            <td>{product.name}</td>
+            <td>{product.quantity}</td>
+            <td>{product.subtotal}</td>
           </tr>
         ))}
 
       </tbody>
     </table>
   </div>
+
+  <div className="total-detail">Total: ${sale.total}</div>
+  <div><ButtonComponent 
+      text='Ingresar'
+      bgColor='#0077cc'
+      txtColor='#fff'
+      borderRadius={15}
+      height={35}
+      width={100}
+      margin={40}
+      
+  /></div>
     </div>
   )
 }
