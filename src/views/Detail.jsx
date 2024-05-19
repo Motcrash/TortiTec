@@ -1,20 +1,56 @@
 import React, {useEffect, useState} from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import '../styles/detailStyle.css'
 import HeaderComponent from '../components/HeaderComponent'
 import NavBarComponent from '../components/NavBarComponent'
 import ButtonComponent from '../components/ButtonComponent'
 
+import axios from 'axios';
+const URISales = 'http://localhost:8000/sells/';
+const URIProducts = 'http://localhost:8000/products/';
+
 function Detail() {
-  // Temporal hasta tener la DataBase, fecha random
-  const [products, setProducts] = useState([
-    {idVenta: 25, idProducto: 2, fecha: '17-05-2021', name: 'Chiles rellenos', quantity: 2, subtotal: 60},
-    {idVenta: 25, idProducto: 5, fecha: '17-05-2021', name: 'Requesón', quantity: 1, subtotal: 25},
-    {idVenta: 25, idProducto: 5, fecha: '17-05-2021', name: '1Kg de tortillas', quantity: 1, subtotal: 25},
-  ]);
+  
+  let { state } = useLocation();
+  const {id} = state;
+  const [sale, setSale] = useState([]);
+  const [products, setProduct] = useState([]);
+  const {details} = sale;
 
-  const [sale, setSale] = useState({idVenta: 25, products: 5, total: 110},);
+  // details.map(detail => {
+  //   console.log("id: "+detail.id+" and quantity: "+detail.quantity);
+  // })
+  
+  useEffect(() => {
+    getSale();
+    getProduct();
+  }, []);
 
+  const renderDetails = (details) => {
+    if (details) {
+      const filteredDetails = details.filter(detail => detail.quantity > 0)
+      return (filteredDetails.map(detail => (
+        <tr key={detail.id}> 
+          <td>{getProductName(detail.id)}</td>
+          <td>{detail.quantity}</td>
+         <td>{0}</td>
+        </tr>
+      )))
+    } 
+  }
+  
+  const getProductName = (id) => {
+    return products.find(product => product.id === id).title;
+  }
+  
+  const getSale = async () => {
+    const res = await axios.get(`${URISales}${id}`);
+    setSale(res.data);
+  }
+  const getProduct = async () => {
+    const res = await axios.get(`${URIProducts}`);
+    setProduct(res.data);
+  }
 
   return (
     <div>
@@ -23,7 +59,7 @@ function Detail() {
 
     {/*Tabla de Detalle*/}
     <div className='table-detail-container'>
-    <h1>Ventas</h1>
+    <h1>Venta #{id}</h1>
     <table>
       <thead>
         <tr>
@@ -33,29 +69,13 @@ function Detail() {
         </tr>
       </thead>
       <tbody>
-      {products.map(product => (
-          <tr key={product.idProducto}>
-            <td>{product.name}</td>
-            <td>{product.quantity}</td>
-            <td>{product.subtotal}</td>
-          </tr>
-        ))}
+      {renderDetails(details)}
 
       </tbody>
     </table>
   </div>
 
-  <div className="total-detail">Total: ${sale.total}</div>
-  <div><ButtonComponent 
-      text='Ingresar'
-      bgColor='#0077cc'
-      txtColor='#fff'
-      borderRadius={15}
-      height={35}
-      width={100}
-      margin={40}
-      
-  /></div>
+  <div className="total-detail">Total: ${0}</div>
     </div>
   )
 }
