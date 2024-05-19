@@ -6,6 +6,7 @@ import db from './database/db.js';
 import sellsRoutes from './routes/SellsRouter.js';
 import productsRoutes from './routes/ProductsRouter.js';
 import userRoutes from './routes/UsersRouter.js';
+import stockRouter from './routes/StockRouter.js';
 
 const app = express();
 
@@ -14,6 +15,7 @@ app.use( express.json() );
 app.use('/sells', sellsRoutes);
 app.use('/products', productsRoutes);
 app.use('/users', userRoutes)
+app.use('/stocks', stockRouter)
 
 try {
     await db.authenticate();

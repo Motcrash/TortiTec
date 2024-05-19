@@ -6,7 +6,8 @@ const ProductsModel = db.define('products', {
     title: {type: DataTypes.STRING},
     description: {type: DataTypes.STRING},
     price: {type: DataTypes.DOUBLE},
-    cuantity: {type: DataTypes.INTEGER}
+    img_source: {type: DataTypes.STRING},
+    quantity: {type: DataTypes.INTEGER}
 });
 
 export default ProductsModel;
