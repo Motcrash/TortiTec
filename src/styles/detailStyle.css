@@ -1,0 +1,40 @@
+/*Tabla*/
+table{
+    padding: 10px;
+    margin: 20px;
+  }
+
+  .table-detail-container h1{
+    padding: 15px;
+    padding-bottom: 10px;
+    color: rgb(2, 0, 71);
+}
+
+.table-detail-container table {
+    width: 90%;
+    border-collapse: collapse;
+}
+
+.table-detail-container th,
+.table-detail-container td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.table-detail-container th {
+    background-color: #f2f2f2;
+}
+
+.table-detail-container tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.table-detail-container tbody tr:hover {
+    background-color: #ddd;
+}
+.total-detail {
+    margin-top: 20px;
+    font-weight: bold;
+    margin-left: 25px;
+  }
