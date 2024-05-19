@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import '../styles/stockStyle.css'
+import { Link } from 'react-router-dom';
 import HeaderComponent from '../components/HeaderComponent'
 import NavBarComponent from '../components/NavBarComponent'
 import axios from 'axios';
@@ -25,6 +26,27 @@ function Stock() {
     const getProduct = async () => {
         const res = await axios.get(URIProducts);
         setProduct(res.data);
+    }
+
+    const renderProduct = (products) => {
+      if(products){
+        return (stock.map(item => (
+          <tr key={item.id}>
+            <td>{products.find(product => product.id === item.id).title}</td>
+            <td>{item.quantity}</td>
+            <td>
+            <div className='buttons-stock'>
+            <button onClick={() => handleIncrease(item)}>
+              <img src='/src/assets/img/mas.png' alt="moreButton"/>
+            </button>
+            <button onClick={() => handleDecrease(item)}>
+              <img src='/src/assets/img/menos.png' alt="moreButton"/>
+            </button>
+            </div>
+            </td>
+          </tr>
+        )))
+      }
     }
 
     const handleIncrease = (item) => {
@@ -72,23 +94,7 @@ function Stock() {
           </tr>
         </thead>
         <tbody>
-        {stock.map(item => (
-            <tr key={item.id}>
-              <td>{products.find(product => product.id === item.id).title}</td>
-              <td>{item.quantity}</td>
-              <td>
-              <div className='buttons-stock'>
-              <button onClick={() => handleIncrease(item)}>
-                <img src='/src/assets/img/mas.png' alt="moreButton"/>
-              </button>
-              <button onClick={() => handleDecrease(item)}>
-                <img src='/src/assets/img/menos.png' alt="moreButton"/>
-              </button>
-              </div>
-              </td>
-            </tr>
-          ))}
-
+          {renderProduct(products)}
         </tbody>
       </table>
     </div>
