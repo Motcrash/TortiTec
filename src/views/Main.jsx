@@ -3,28 +3,65 @@ import '../styles/headerStyle.css'
 import '../styles/mainStyle.css'
 import HeaderComponent from '../components/HeaderComponent'
 import NavBarComponent from '../components/NavBarComponent'
-import ButtonComponent from '../components/ButtonComponent'
 import ProductList from '../components/ProductListComponent'
 import SalesTableComponent from '../components/SalesTableComponent'
 
+import axios from 'axios';
+
+const URIProducts = 'http://localhost:8000/products/';
+const URISells = 'http://localhost:8000/sells/';
+const URIStock = 'http://localhost:8000/stocks/';
+
 
 export default function Main() {
+
+  const [products, setProducts] = useState([]);
+
+    useEffect(() => {
+      getProducts();
+    }, []);
+    
+    const getProducts = async () => {
+        const res = await axios.get(URIProducts);
+        setProducts(res.data);
+    }
+
+    const createSell = async () => {
+      const details = products.map(product => ( {
+        id: product.id,
+        quantity: product.quantity
+      }));
+
+      const res = await axios.get(URIStock)
+      const stock = res.data;
+
+      await details.map( detail => {
+        console.log('Entró a la funcion');
+        let i = 0;
+        if (detail.quantity > stock[i].quantity) {
+          console.log('No hay suficientes productos en inventario');
+        }else{
+          if (detail.quantity == 0) {
+            return
+          }else{
+            axios.put(`${URIStock}${detail.id}`, {
+              quantity: (stock[i].quantity - detail.quantity)
+            })
+          }
+        }
+        i++;
+        clean();
+      })
+
+      await axios.post(URISells, {
+        total: total,
+        details: details
+      });
+    }
   
   useEffect(() => {
     SalesTableComponent
   }, [ProductList])
-
-  const [products, setProducts] = useState([
-    { id: 1, name: '1Kg de tortillas', image: '/src/assets/img/tortillas.jpg', price: 25.00, quantity: 0},
-    { id: 2, name: '0.5Kg de tortillas', image: '/src/assets/img/tortillas-2.jpg', price: 15.00, quantity: 0},
-    { id: 3, name: 'Paquete de frijoles', image: '/src/assets/img/frijoles.jpg', price: 25.00, quantity: 0},
-    { id: 4, name: '0.5Kg de chicharrón', image: '/src/assets/img/chicharron.jpg', price: 130.00, quantity: 0},
-    { id: 5, name: '250gr de chicharrón', image: '/src/assets/img/chicharron-2.jpg', price: 80.00, quantity: 0},
-    { id: 6, name: 'Conito de cajeta', image: '/src/assets/img/cajeta.jpg', price: 20.00, quantity: 0},
-    { id: 8, name: 'Chiles rellenos', image: '/src/assets/img/chiles.jpg', price: 30.00, quantity: 0},
-    { id: 9, name: 'Requesón', image: '/src/assets/img/requeson.jpg', price: 25.00, quantity: 0},
-    { id: 10, name: 'Chile colorado', image: '/src/assets/img/chileColorado.jpg', price: 28.00, quantity: 0}, 
-  ]);
 
   const handleIncrease = (product) => {
     const updatedProducts = products.map((p) =>
@@ -43,6 +80,8 @@ export default function Main() {
   };
 
 
+
+  // Setear los cuantity a 0
   const clean = () => {
     const updatedProducts = products.map((p) => ({ ...p, quantity: 0 }));
     setProducts(updatedProducts);
@@ -63,9 +102,9 @@ export default function Main() {
         <div className="product-list" >
           {products.map((product) => (
               <div className="product" key={product.id}>
-                <img src={product.image} alt={product.name} />
-                <h3>{product.name}</h3>
-                <p>{'$'+product.price+'.00'}</p>
+                <img src={product.img_source} alt={product.name} />
+                <h3>{product.title}</h3>
+                <p>{'$'+(product.price).toFixed(2)}</p>
                 <p>Cantidad: {product.quantity}</p>
                 <button onClick={() => handleIncrease(product)}>Aumentar</button>
                 <button onClick={() => handleDecrease(product)}>Quitar</button>
@@ -90,7 +129,7 @@ export default function Main() {
         <tbody>
         {products.map(product => (
             <tr key={product.id}>
-              <td>{product.name}</td>
+              <td>{product.title}</td>
               <td>{'$'+product.price+".00"}</td>
               <td>{product.quantity}</td>
               <td>{'$'+(product.price * product.quantity)+".00"}</td>
@@ -102,7 +141,7 @@ export default function Main() {
       <div className="total">Total: ${total.toFixed(2)}</div>
 
       <div className='button-main'>
-      <button>Resgitrar venta</button>
+      <button onClick={createSell}>Resgitrar venta</button>
       <button onClick={clean}>Cancelar</button>
       </div>
     </div>
