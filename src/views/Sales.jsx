@@ -4,14 +4,21 @@ import '../styles/salesStyle.css'
 import HeaderComponent from '../components/HeaderComponent'
 import NavBarComponent from '../components/NavBarComponent'
 
+import axios from 'axios';
+const URISales = 'http://localhost:8000/sells/';
+
 function Sales() {
-  // Temporal hasta tener la DataBase, fecha random
-  const [products, setProducts] = useState([
-    { id: 1, fecha: '17-05-2021', detalle: 'ye' },
-    { id: 2, fecha: '17-05-2021', detalle: 'ye' },
-    // { id: 3, name: 'Paquete de frijoles', image: '/src/assets/img/frijoles.jpg', price: 25.00, quantity: 0},
-    // { id: 4, name: '0.5Kg de chicharrón', image: '/src/assets/img/chicharron.jpg', price: 130.00, quantity: 0},
-  ]);
+
+  const [sales, setSales] = useState([]);
+
+  useEffect(() => {
+    getSales();
+  }, []);
+
+  const getSales = async () => {
+    const res = await axios.get(URISales);
+    setSales(res.data);
+  }
 
   return (
     <div >
@@ -29,12 +36,12 @@ function Sales() {
         </tr>
       </thead>
       <tbody>
-      {products.map(product => (
-          <tr key={product.id}>
-            <td>{product.id}</td>
-            <td>{product.fecha}</td>
+      {sales.map(sale => (
+          <tr key={sale.id}>
+            <td>{sale.id}</td>
+            <td>{Date(sale.sellDate)}</td>
             <td>
-            <div> <Link to='/detail'> <button>Detalle de Venta</button> </Link></div>
+            <div> <Link to={`/detail/${sale.id}`} state={{ id: sale.id }}> <button>Detalle de Venta</button> </Link></div>
             </td>
           </tr>
         ))}
