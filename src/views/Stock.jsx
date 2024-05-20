@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react'
 import '../styles/stockStyle.css'
-import { Link } from 'react-router-dom';
 import HeaderComponent from '../components/HeaderComponent'
 import NavBarComponent from '../components/NavBarComponent'
 import axios from 'axios';
@@ -29,14 +28,14 @@ function Stock() {
     }
 
     const renderProduct = (products) => {
-      if(products){
+      if(products[0] != undefined){
         return (stock.map(item => (
           <tr key={item.id}>
             <td>{products.find(product => product.id === item.id).title}</td>
             <td>{item.quantity}</td>
             <td>
             <div className='buttons-stock'>
-            <button onClick={() => handleIncrease(item)}>
+            <button className='detailButton' onClick={() => handleIncrease(item)}>
               <img src='/src/assets/img/mas.png' alt="moreButton"/>
             </button>
             <button onClick={() => handleDecrease(item)}>

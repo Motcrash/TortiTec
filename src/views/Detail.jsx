@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react'
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import '../styles/detailStyle.css'
 import HeaderComponent from '../components/HeaderComponent'
 import NavBarComponent from '../components/NavBarComponent'
-import ButtonComponent from '../components/ButtonComponent'
 
 import axios from 'axios';
+import LoaderComponent from '../components/LoaderComponent';
 const URISales = 'http://localhost:8000/sells/';
 const URIProducts = 'http://localhost:8000/products/';
 
@@ -13,17 +13,17 @@ function Detail() {
   
   let { state } = useLocation();
   const {id} = state;
+  const [loading, setLoading] = useState(true);
   const [sale, setSale] = useState([]);
   const [products, setProduct] = useState([]);
   const {details} = sale;
-
-  // details.map(detail => {
-  //   console.log("id: "+detail.id+" and quantity: "+detail.quantity);
-  // })
   
   useEffect(() => {
-    getSale();
-    getProduct();
+    setTimeout(() => {
+      getProduct();
+      getSale();
+      setLoading(false)
+    }, 3000);
   }, []);
 
   const renderDetails = (details) => {
@@ -33,14 +33,21 @@ function Detail() {
         <tr key={detail.id}> 
           <td>{getProductName(detail.id)}</td>
           <td>{detail.quantity}</td>
-         <td>{0}</td>
+          <td>{getPrice(detail.id)}</td>
+         <td>{getSubtotal(detail.id, detail.quantity)}</td>
         </tr>
       )))
     } 
   }
   
-  const getProductName = (id) => {
-    return products.find(product => product.id === id).title;
+  const getProductName =  (id) => {
+      return products.find(product => product.id === id).title;
+  }
+  const getPrice = (id) => {
+    return products.find(product => product.id === id).price;
+  }
+  const getSubtotal = (id, quantity) => {
+    return (products.find(product => product.id === id).price)* quantity;
   }
   
   const getSale = async () => {
@@ -54,28 +61,36 @@ function Detail() {
 
   return (
     <div>
-    <HeaderComponent />
-    <NavBarComponent />
+      {loading ? (<LoaderComponent/>)
+      : (
+        <div>
+        <HeaderComponent />
+        <NavBarComponent />
 
-    {/*Tabla de Detalle*/}
-    <div className='table-detail-container'>
-    <h1>Venta #{id}</h1>
-    <table>
-      <thead>
-        <tr>
-          <th>Nombre</th>
-          <th>Cantidad</th>
-          <th>Subtotal</th>
-        </tr>
-      </thead>
-      <tbody>
-      {renderDetails(details)}
+        {/*Tabla de Detalle*/}
+        <div className='table-detail-container'>
+          <h1>Venta #{id}</h1>
+          <table>
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Cantidad</th>
+                <th>precio</th>
+                <th>Subtotal</th>
+              </tr>
+            </thead>
+            <tbody>
+            {renderDetails(details)}
 
-      </tbody>
-    </table>
-  </div>
+            </tbody>
+          </table>
+        </div>
 
-  <div className="total-detail">Total: ${0}</div>
+        <div className="total-detail">Total: ${sale.total}</div>
+        </div>  
+      )  
+    
+    }
     </div>
   )
 }
