@@ -41,6 +41,11 @@
     /*background-color: blueviolet;*/
 }
 
+button, img{
+  user-select: none;
+  
+}
+
 /*Tabla*/
 table{
   padding: 10px;

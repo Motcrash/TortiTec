@@ -37,6 +37,8 @@ table{
 }
 
 .buttons-stock button {
+    border: 0px;
+    background-color: #dddddd00;
     cursor: pointer;
     padding: 5px 10px;
 }
