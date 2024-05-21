@@ -3,8 +3,8 @@ import '../styles/headerStyle.css'
 import '../styles/mainStyle.css'
 import HeaderComponent from '../components/HeaderComponent'
 import NavBarComponent from '../components/NavBarComponent'
-import ProductList from '../components/ProductListComponent'
-import SalesTableComponent from '../components/SalesTableComponent'
+
+
 
 import axios from 'axios';
 
@@ -60,9 +60,6 @@ export default function Main() {
       }else return
     }
   
-  useEffect(() => {
-    SalesTableComponent
-  }, [ProductList])
 
   const handleIncrease = (product) => {
     const updatedProducts = products.map((p) =>
