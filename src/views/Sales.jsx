@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import '../styles/salesStyle.css'
 import HeaderComponent from '../components/HeaderComponent'
 import NavBarComponent from '../components/NavBarComponent'
+import toast, { Toaster } from 'react-hot-toast';
 
 import axios from 'axios';
 const URISales = 'http://localhost:8000/sells/';
@@ -12,9 +13,14 @@ function Sales() {
 
   const [sales, setSales] = useState([]);
 
+  // Toast
+  const noifyDeleteSale = () => toast.error('Venta eliminada exitosamente!');
+
   const deleteSale = async (id) => {
     await axios.delete(`${URISales}${id}`)
+    // noifyDeleteSale();
   }
+
   useEffect(() => {
     getSales();
   }, [deleteSale()]);
@@ -50,7 +56,7 @@ function Sales() {
             <div> <Link to={`/detail/${sale.id}`} state={{ id: sale.id }}> <button className='detailButton'>Detalle de Venta</button> </Link></div>
             </td>
             <td>
-              <button className='deleteButton' onClick={() => deleteSale(sale.id)}>
+              <button className='deleteButton' onClick={() => deleteSale(sale.id)}>  
                 <img src='/src/assets/img/borrar.png' alt="deleteButton"/>
               </button>
             </td>
@@ -61,7 +67,7 @@ function Sales() {
       </tbody>
     </table>
   </div>
-    
+    {/* <Toaster /> */}
   </div>
 )
 }
