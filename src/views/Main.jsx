@@ -3,8 +3,9 @@ import '../styles/headerStyle.css'
 import '../styles/mainStyle.css'
 import HeaderComponent from '../components/HeaderComponent'
 import NavBarComponent from '../components/NavBarComponent'
-import ProductList from '../components/ProductListComponent'
-import SalesTableComponent from '../components/SalesTableComponent'
+import toast, { Toaster } from 'react-hot-toast';
+
+
 
 import axios from 'axios';
 
@@ -14,6 +15,9 @@ const URIStock = 'http://localhost:8000/stocks/';
 
 
 export default function Main() {
+  
+  // Toast
+  const noifySale = () => toast.success('Venta registrada exitosamente!');
 
   const [products, setProducts] = useState([]);
 
@@ -58,11 +62,10 @@ export default function Main() {
           details: details
         });
       }else return
+
+      noifySale();
     }
   
-  useEffect(() => {
-    SalesTableComponent
-  }, [ProductList])
 
   const handleIncrease = (product) => {
     const updatedProducts = products.map((p) =>
@@ -146,6 +149,7 @@ export default function Main() {
       <button onClick={clean}>Cancelar</button>
       </div>
     </div>
+    <Toaster />
     </div>
     </>
     

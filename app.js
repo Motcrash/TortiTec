@@ -21,7 +21,7 @@ try {
     await db.authenticate();
     console.log('Conectado a la Base de datos');
 } catch (error) {
-    console.log('Error de conexión');
+    console.log('Error de conexión', error);
 }
 
 app.get('/', (req,res) => {
