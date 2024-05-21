@@ -14,6 +14,8 @@ const URIStock = 'http://localhost:8000/stocks/';
 
 
 export default function Main() {
+  // Moodal
+  const [modalOpen, setModalOpen] = useState(false);
 
   const [products, setProducts] = useState([]);
 
@@ -27,6 +29,8 @@ export default function Main() {
     }
 
     const createSell = async () => {
+      setModalOpen(true); //Abre Modal
+
       const details = products.map(product => ( {
         id: product.id,
         quantity: product.quantity
