@@ -3,6 +3,7 @@ import '../styles/headerStyle.css'
 import '../styles/mainStyle.css'
 import HeaderComponent from '../components/HeaderComponent'
 import NavBarComponent from '../components/NavBarComponent'
+import toast, { Toaster } from 'react-hot-toast';
 
 
 
@@ -14,8 +15,9 @@ const URIStock = 'http://localhost:8000/stocks/';
 
 
 export default function Main() {
-  // Moodal
-  const [modalOpen, setModalOpen] = useState(false);
+  
+  // Toast
+  const noifySale = () => toast.success('Venta registrada exitosamente!');
 
   const [products, setProducts] = useState([]);
 
@@ -29,8 +31,6 @@ export default function Main() {
     }
 
     const createSell = async () => {
-      setModalOpen(true); //Abre Modal
-
       const details = products.map(product => ( {
         id: product.id,
         quantity: product.quantity
@@ -62,6 +62,8 @@ export default function Main() {
           details: details
         });
       }else return
+
+      noifySale();
     }
   
 
@@ -147,6 +149,7 @@ export default function Main() {
       <button onClick={clean}>Cancelar</button>
       </div>
     </div>
+    <Toaster />
     </div>
     </>
     
