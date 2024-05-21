@@ -14,10 +14,12 @@ function Sales() {
 
   const deleteSale = async (id) => {
     await axios.delete(`${URISales}${id}`)
+    getSales();
   }
+
   useEffect(() => {
     getSales();
-  }, [deleteSale()]);
+  }, []);
 
   const getSales = async () => {
     const res = await axios.get(URISales);
