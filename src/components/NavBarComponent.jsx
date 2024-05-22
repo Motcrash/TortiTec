@@ -4,20 +4,20 @@ import '../styles/navBarStyle.css';
 
 const links = [
   {
-    name: "Login",
-    href: "/"
-  },
-  {
-    name: "Main",
+    name: "Venta",
     href: "/main"
   },
   {
-    name: "Stock",
+    name: "Inventario",
     href: "/stock"
   },
   {
-    name: "Sales",
+    name: "Historial",
     href: "/sales"
+  },
+  {
+    name: "Cerrar Sesión",
+    href: "/"
   },
 ];
 
