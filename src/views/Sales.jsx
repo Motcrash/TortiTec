@@ -68,7 +68,7 @@ function Sales() {
       </tbody>
     </table>
   </div>
-    {/* <Toaster /> */}
+   <Toaster /> 
   </div>
 )
 }
