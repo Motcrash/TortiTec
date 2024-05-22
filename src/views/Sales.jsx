@@ -18,7 +18,7 @@ function Sales() {
 
   const deleteSale = async (id) => {
     await axios.delete(`${URISales}${id}`)
-    deleteSale();
+    getSales();
     noifyDeleteSale();
   }
 
