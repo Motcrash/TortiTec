@@ -9,7 +9,7 @@ import toast, { Toaster } from 'react-hot-toast';
 
 import axios from 'axios';
 
-const URIProducts = 'http://localhost:8000/products/';
+const URIMain = 'http://localhost:8000/main/';
 const URISells = 'http://localhost:8000/sells/';
 const URIStock = 'http://localhost:8000/stocks/';
 
@@ -28,7 +28,7 @@ export default function Main() {
     }, []);
     
     const getProducts = async () => {
-        const res = await axios.get(URIProducts);
+        const res = await axios.get(URIMain);
         setProducts(res.data);
     }
 
@@ -41,25 +41,21 @@ export default function Main() {
           id: product.id,
           quantity: product.quantity
         }));
-  
-        const res = await axios.get(URIStock)
-        const stock = res.data;
-  
         details.map( detail => {
-          let i = 0;
-          if (detail.quantity > stock[i].quantity) {
+          const stock = products.find(product => product.id === detail.id).stock;
+          if (detail.quantity > stock) {
             error = true;
+            return;
           }else{
             if (detail.quantity == 0) {
-              return
+              return;
             }else{
               axios.put(`${URIStock}${detail.id}`, {
-                quantity: (stock[i].quantity - detail.quantity)
+                quantity: stock - detail.quantity
               })
             }
           }
-          i++;
-          clean();
+
         })
   
         if (!error) {
@@ -68,6 +64,7 @@ export default function Main() {
             details: details
           });
           noifySale();
+          clean();
         }else notifyOutOfBounds();
       }
 
