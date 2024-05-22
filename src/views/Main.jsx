@@ -18,6 +18,8 @@ export default function Main() {
   
   // Toast
   const noifySale = () => toast.success('Venta registrada exitosamente!');
+  const notifyOutOfBounds = () => toast.error('No hay suficientes productos');
+  const notifyNull = () => toast.error('No hay productos agregados');
 
   const [products, setProducts] = useState([]);
 
@@ -31,39 +33,44 @@ export default function Main() {
     }
 
     const createSell = async () => {
-      const details = products.map(product => ( {
-        id: product.id,
-        quantity: product.quantity
-      }));
-
-      const res = await axios.get(URIStock)
-      const stock = res.data;
-
-      details.map( detail => {
-        let i = 0;
-        if (detail.quantity > stock[i].quantity) {
-          console.log('No hay suficientes productos en inventario');
-        }else{
-          if (detail.quantity == 0) {
-            return
+      let error = false;
+      if (total === 0) {
+        notifyNull();
+      }else{
+        const details = products.map(product => ( {
+          id: product.id,
+          quantity: product.quantity
+        }));
+  
+        const res = await axios.get(URIStock)
+        const stock = res.data;
+  
+        details.map( detail => {
+          let i = 0;
+          if (detail.quantity > stock[i].quantity) {
+            error = true;
           }else{
-            axios.put(`${URIStock}${detail.id}`, {
-              quantity: (stock[i].quantity - detail.quantity)
-            })
+            if (detail.quantity == 0) {
+              return
+            }else{
+              axios.put(`${URIStock}${detail.id}`, {
+                quantity: (stock[i].quantity - detail.quantity)
+              })
+            }
           }
-        }
-        i++;
-        clean();
-      })
+          i++;
+          clean();
+        })
+  
+        if (!error) {
+          await axios.post(URISells, {
+            total: total,
+            details: details
+          });
+          noifySale();
+        }else notifyOutOfBounds();
+      }
 
-      if (total != 0) {
-        await axios.post(URISells, {
-          total: total,
-          details: details
-        });
-      }else return
-
-      noifySale();
     }
   
 
