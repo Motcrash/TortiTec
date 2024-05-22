@@ -4,6 +4,7 @@ import cors from 'cors';
 import db from './database/db.js';
 
 import sellsRoutes from './routes/SellsRouter.js';
+import mainRoutes from './routes/MainRouter.js';
 import productsRoutes from './routes/ProductsRouter.js';
 import userRoutes from './routes/UsersRouter.js';
 import stockRouter from './routes/StockRouter.js';
@@ -14,6 +15,7 @@ app.use( cors() );
 app.use( express.json() );
 app.use('/sells', sellsRoutes);
 app.use('/products', productsRoutes);
+app.use('/main', mainRoutes);
 app.use('/users', userRoutes)
 app.use('/stocks', stockRouter)
 
