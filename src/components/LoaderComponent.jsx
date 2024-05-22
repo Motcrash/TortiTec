@@ -6,12 +6,11 @@ import '../styles/loaderStyle.css'
 function LoaderComponent() {
 
     let [loading, setLoading] = useState(true);
-    let [color, setColor] = useState("#0056b3");
 
   return (
     <div className="loaderContainer">
       <ClipLoader
-        color={color}
+        color={"#0056b3"}
         loading={loading}
         size={150}
         aria-label="Loading Spinner"
