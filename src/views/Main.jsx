@@ -18,7 +18,7 @@ export default function Main() {
   
   // Toast
   const noifySale = () => toast.success('Venta registrada exitosamente!');
-  const notifyOutOfBounds = () => toast.error('No hay suficientes productos');
+  const notifyOutOfStock = () => toast.error('No hay suficientes productos');
   const notifyNull = () => toast.error('No hay productos agregados');
 
   const [products, setProducts] = useState([]);
@@ -66,7 +66,7 @@ export default function Main() {
           });
           noifySale();
           clean();
-        }else notifyOutOfBounds();
+        }else notifyOutOfStock();
       }
 
     }
@@ -109,7 +109,8 @@ export default function Main() {
       <div className='flex-product-container'>
 
         <div className="product-list" >
-          {products.map((product) => (
+          {products.map((product) => {
+            if (product.isActive) { return (
               <div className="product" key={product.id}>
                 <img src={product.img_source} alt={product.name} />
                 <h3>{product.title}</h3>
@@ -118,7 +119,9 @@ export default function Main() {
                 <button onClick={() => handleIncrease(product)}>Aumentar</button>
                 <button onClick={() => handleDecrease(product)}>Quitar</button>
               </div>
-          ))}
+            )
+            }
+          })}
         </div>
       </div>
     </div>
@@ -136,14 +139,16 @@ export default function Main() {
           </tr>
         </thead>
         <tbody>
-        {products.map(product => (
-            <tr key={product.id}>
-              <td>{product.title}</td>
-              <td>{'$'+product.price+".00"}</td>
-              <td>{product.quantity}</td>
-              <td>{'$'+(product.price * product.quantity)+".00"}</td>
-            </tr>
-          ))}
+        {products.map(product => {
+            if (product.isActive){ return (
+              <tr key={product.id}>
+                <td>{product.title}</td>
+                <td>{'$'+product.price+".00"}</td>
+                <td>{product.quantity}</td>
+                <td>{'$'+(product.price * product.quantity)+".00"}</td>
+              </tr>
+            )}
+          })}
 
         </tbody>
       </table>
