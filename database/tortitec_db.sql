@@ -3,10 +3,11 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 23, 2024 at 08:35 AM
+-- Generation Time: May 23, 2024 at 07:21 PM
 -- Server version: 8.0.36
 -- PHP Version: 8.2.12
 
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -20,7 +21,7 @@ SET time_zone = "+00:00";
 -- Database: `tortitec_db`
 --
 CREATE DATABASE IF NOT EXISTS `tortitec_db` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
-USE tortitec_db;
+USE `tortitec_db`;
 
 -- --------------------------------------------------------
 
@@ -82,7 +83,8 @@ INSERT INTO `sells` (`id`, `sellDate`, `total`, `details`, `createdAt`, `updated
 (37, '2024-05-19 23:21:23', 160, '[{\"id\": 1, \"quantity\": 1}, {\"id\": 2, \"quantity\": 0}, {\"id\": 3, \"quantity\": 0}, {\"id\": 4, \"quantity\": 0}, {\"id\": 5, \"quantity\": 1}, {\"id\": 6, \"quantity\": 0}, {\"id\": 8, \"quantity\": 1}, {\"id\": 9, \"quantity\": 1}, {\"id\": 10, \"quantity\": 0}]', '2024-05-19 23:21:23', '2024-05-19 23:21:23'),
 (38, '2024-05-19 23:21:31', 363, '[{\"id\": 1, \"quantity\": 0}, {\"id\": 2, \"quantity\": 4}, {\"id\": 3, \"quantity\": 1}, {\"id\": 4, \"quantity\": 1}, {\"id\": 5, \"quantity\": 1}, {\"id\": 6, \"quantity\": 2}, {\"id\": 8, \"quantity\": 0}, {\"id\": 9, \"quantity\": 0}, {\"id\": 10, \"quantity\": 1}]', '2024-05-19 23:21:31', '2024-05-19 23:21:31'),
 (39, '2024-05-22 01:07:19', 270, '[{\"id\": 1, \"quantity\": 0}, {\"id\": 2, \"quantity\": 5}, {\"id\": 3, \"quantity\": 0}, {\"id\": 4, \"quantity\": 0}, {\"id\": 5, \"quantity\": 0}, {\"id\": 6, \"quantity\": 3}, {\"id\": 8, \"quantity\": 2}, {\"id\": 9, \"quantity\": 3}, {\"id\": 10, \"quantity\": 0}]', '2024-05-22 01:07:19', '2024-05-22 01:07:19'),
-(72, '2024-05-22 03:15:22', 75, '[{\"id\": 1, \"quantity\": 3}, {\"id\": 2, \"quantity\": 0}, {\"id\": 3, \"quantity\": 0}, {\"id\": 4, \"quantity\": 0}, {\"id\": 5, \"quantity\": 0}, {\"id\": 6, \"quantity\": 0}, {\"id\": 8, \"quantity\": 0}, {\"id\": 9, \"quantity\": 0}, {\"id\": 10, \"quantity\": 0}]', '2024-05-22 03:15:22', '2024-05-22 03:15:22');
+(72, '2024-05-22 03:15:22', 75, '[{\"id\": 1, \"quantity\": 3}, {\"id\": 2, \"quantity\": 0}, {\"id\": 3, \"quantity\": 0}, {\"id\": 4, \"quantity\": 0}, {\"id\": 5, \"quantity\": 0}, {\"id\": 6, \"quantity\": 0}, {\"id\": 8, \"quantity\": 0}, {\"id\": 9, \"quantity\": 0}, {\"id\": 10, \"quantity\": 0}]', '2024-05-22 03:15:22', '2024-05-22 03:15:22'),
+(76, '2024-05-23 16:05:59', 385, '[{\"id\": 1, \"quantity\": 2}, {\"id\": 3, \"quantity\": 3}, {\"id\": 5, \"quantity\": 3}, {\"id\": 6, \"quantity\": 1}]', '2024-05-23 16:05:59', '2024-05-23 16:05:59');
 
 -- --------------------------------------------------------
 
@@ -94,6 +96,7 @@ DROP TABLE IF EXISTS `stocks`;
 CREATE TABLE `stocks` (
   `id` int NOT NULL,
   `quantity` int NOT NULL,
+  `isActive` tinyint(1) NOT NULL,
   `createdAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updatedAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -102,16 +105,16 @@ CREATE TABLE `stocks` (
 -- Dumping data for table `stocks`
 --
 
-INSERT INTO `stocks` (`id`, `quantity`, `createdAt`, `updatedAt`) VALUES
-(1, 11, '2024-05-18 21:41:44', '2024-05-22 03:15:22'),
-(2, 17, '2024-05-18 21:41:44', '2024-05-22 03:15:02'),
-(3, 17, '2024-05-18 21:41:44', '2024-05-22 03:15:03'),
-(4, 18, '2024-05-18 21:41:44', '2024-05-22 03:15:04'),
-(5, 20, '2024-05-18 21:41:44', '2024-05-22 03:15:05'),
-(6, 21, '2024-05-18 21:41:44', '2024-05-22 03:15:06'),
-(8, 17, '2024-05-18 21:41:44', '2024-05-22 01:07:19'),
-(9, 13, '2024-05-18 21:41:44', '2024-05-22 03:15:07'),
-(10, 20, '2024-05-18 21:41:44', '2024-05-22 03:15:08');
+INSERT INTO `stocks` (`id`, `quantity`, `isActive`, `createdAt`, `updatedAt`) VALUES
+(1, 20, 0, '2024-05-18 21:41:44', '2024-05-23 17:19:02'),
+(2, 22, 1, '2024-05-18 21:41:44', '2024-05-23 17:18:47'),
+(3, 23, 0, '2024-05-18 21:41:44', '2024-05-23 17:19:03'),
+(4, 18, 1, '2024-05-18 21:41:44', '2024-05-23 17:18:48'),
+(5, 15, 1, '2024-05-18 21:41:44', '2024-05-23 17:18:48'),
+(6, 17, 0, '2024-05-18 21:41:44', '2024-05-23 17:19:04'),
+(8, 17, 1, '2024-05-18 21:41:44', '2024-05-23 17:00:58'),
+(9, 19, 1, '2024-05-18 21:41:44', '2024-05-23 17:13:14'),
+(10, 23, 1, '2024-05-18 21:41:44', '2024-05-23 17:13:14');
 
 -- --------------------------------------------------------
 
@@ -160,6 +163,7 @@ CREATE TABLE `vw_main` (
 `createdAt` timestamp
 ,`id` int
 ,`img_source` varchar(100)
+,`isActive` tinyint(1)
 ,`price` double
 ,`quantity` int
 ,`stock` int
@@ -185,7 +189,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 DROP TABLE IF EXISTS `vw_main`;
 
 DROP VIEW IF EXISTS `vw_main`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_main`  AS SELECT `products`.`id` AS `id`, `products`.`title` AS `title`, `products`.`price` AS `price`, `products`.`quantity` AS `quantity`, `products`.`img_source` AS `img_source`, `stocks`.`quantity` AS `stock`, `products`.`createdAt` AS `createdAt`, `products`.`updatedAt` AS `updatedAt` FROM (`products` join `stocks`) WHERE (`stocks`.`id` = `products`.`id`) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_main`  AS SELECT `products`.`id` AS `id`, `products`.`title` AS `title`, `products`.`price` AS `price`, `products`.`quantity` AS `quantity`, `products`.`img_source` AS `img_source`, `stocks`.`quantity` AS `stock`, `stocks`.`isActive` AS `isActive`, `products`.`createdAt` AS `createdAt`, `products`.`updatedAt` AS `updatedAt` FROM (`products` join `stocks`) WHERE (`products`.`id` = `stocks`.`id`) ;
 
 --
 -- Indexes for dumped tables
@@ -223,7 +227,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `sells`
 --
 ALTER TABLE `sells`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
 
 --
 -- AUTO_INCREMENT for table `users`
