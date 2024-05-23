@@ -8,6 +8,7 @@ const ProductsModel = db.define('vw_main', {
     quantity: {type: DataTypes.INTEGER},
     img_source: {type: DataTypes.STRING},
     stock: {type: DataTypes.INTEGER},
+    isActive: {type: DataTypes.BOOLEAN},
 },{
     freezeTableName: true,
 });
