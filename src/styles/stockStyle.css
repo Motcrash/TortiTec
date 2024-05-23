@@ -8,6 +8,11 @@ table{
     padding-bottom: 10px;
     color: rgb(2, 0, 71);
 }
+.table-stock-container h2{
+    padding: 15px;
+    padding-bottom: 10px;
+    color: rgb(2, 0, 71);
+}
 .table-stock-container table {
     width: 90%;
     border-collapse: collapse;
