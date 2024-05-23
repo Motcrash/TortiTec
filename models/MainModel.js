@@ -6,7 +6,7 @@ const ProductsModel = db.define('vw_main', {
     title: {type: DataTypes.STRING},
     price: {type: DataTypes.DOUBLE},
     quantity: {type: DataTypes.INTEGER},
-    img_source: {type: DataTypes.STRING},
+    img_source: {type: DataTypes.TEXT},
     stock: {type: DataTypes.INTEGER},
     isActive: {type: DataTypes.BOOLEAN},
 },{

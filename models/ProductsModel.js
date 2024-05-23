@@ -6,7 +6,7 @@ const ProductsModel = db.define('products', {
     title: {type: DataTypes.STRING},
     description: {type: DataTypes.STRING},
     price: {type: DataTypes.DOUBLE},
-    img_source: {type: DataTypes.STRING},
+    img_source: {type: DataTypes.TEXT},
     quantity: {type: DataTypes.INTEGER}
 });
 
