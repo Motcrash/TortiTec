@@ -55,8 +55,7 @@ function Detail() {
   }
   
   const renderDetails = (details) => {
-      const filteredDetails = details.filter(detail => detail.quantity > 0)
-      return (filteredDetails.map(detail => (
+      return (details.map(detail => (
         <tr key={detail.id}> 
           <td>{getProductName(detail.id)}</td>
           <td>{detail.quantity}</td>

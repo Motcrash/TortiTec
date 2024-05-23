@@ -37,10 +37,11 @@ export default function Main() {
       if (total === 0) {
         notifyNull();
       }else{
-        const details = products.map(product => ( {
+        let details = products.map(product => ( {
           id: product.id,
           quantity: product.quantity
         }));
+        details = details.filter(detail => detail.quantity > 0)
         details.map( detail => {
           const stock = products.find(product => product.id === detail.id).stock;
           if (detail.quantity > stock) {
