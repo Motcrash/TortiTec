@@ -1,13 +1,41 @@
-import React from 'react'
+import React, { useState } from 'react'
 import userImg from '../assets/img/user.png';
 import InputComponent from '../components/InputComponent';
 import '../styles/loginStyle.css'
 import '../styles/headerStyle.css'
 import ButtonComponent from '../components/ButtonComponent'
 import HeaderComponent from '../components/HeaderComponent';
-import { Link } from 'react-router-dom';
+import { Link  } from 'react-router-dom';
+import toast, { Toaster } from 'react-hot-toast';
+
 
 export default function Login() {
+
+ const [user, setUser] = useState('');
+ const [password, setPassword] = useState('');
+
+ const next =''
+ const 
+ const userChange = (e) => {
+  setUser(e.target.value);
+  console.log(user);
+ }
+
+ const passwordChange = (e) => {
+  setPassword(e.target.value);
+  console.log(password);
+ }
+
+ const loginControl = () => {
+  // Logica autenticación
+  if(user=='hola' && password=='123'){
+    next = '/main'
+  }
+  else{
+
+  }
+ }
+
   return (
     <div className='mainContainer'>
         <HeaderComponent />
@@ -22,7 +50,10 @@ export default function Login() {
               hasLabel={true}
               text='Usuario:'
               Placeholder='example@mail.com'
+              value={user}
+              onChange={userChange}
               />
+              
               <InputComponent
               height={20}
               width={200}
@@ -30,10 +61,11 @@ export default function Login() {
               hasLabel={true}
               text='Contraseña:'
               Placeholder='Password'
+              value={password}
+              onChange={passwordChange}
               />
 
-              {/* Lo del button es temporal por lo pronto */}
-              <Link to="/main" >
+              <Link to={next} >
               <ButtonComponent
                 text='Ingresar'
                 bgColor='#0077cc'
@@ -45,6 +77,7 @@ export default function Login() {
               />
               </Link>
           </div>
+
         </div>
     </div>
   )
