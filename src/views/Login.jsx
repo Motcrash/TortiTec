@@ -15,7 +15,9 @@ export default function Login() {
  const [password, setPassword] = useState('');
 
  const next =''
- const 
+
+ const
+ 
  const userChange = (e) => {
   setUser(e.target.value);
   console.log(user);
