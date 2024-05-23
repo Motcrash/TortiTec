@@ -8,6 +8,7 @@ import toast, { Toaster } from 'react-hot-toast';
 
 
 import axios from 'axios';
+import LoaderComponent from '../components/LoaderComponent'
 
 const URIMain = 'http://localhost:8000/main/';
 const URISells = 'http://localhost:8000/sells/';
@@ -15,16 +16,21 @@ const URIStock = 'http://localhost:8000/stocks/';
 
 
 export default function Main() {
-  
   // Toast
   const noifySale = () => toast.success('Venta registrada exitosamente!');
   const notifyOutOfStock = () => toast.error('No hay suficientes productos');
   const notifyNull = () => toast.error('No hay productos agregados');
 
   const [products, setProducts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
       getProducts();
+      
+      const loadingTime = setTimeout(() => {
+        setIsLoading(false);
+      }, 800);
+      return () => clearTimeout(loadingTime);
     }, []);
     
     const getProducts = async () => {
@@ -100,68 +106,72 @@ export default function Main() {
    const total = products.reduce((acc, product) => acc + (product.price * product.quantity), 0);
 
   return (
-    <>
-    <HeaderComponent />
-    <NavBarComponent />
-    <div className='main-content'>
-      <div className='product-container'>
-      <h1>Lista de Productos</h1>
-      <div className='flex-product-container'>
-
-        <div className="product-list" >
-          {products.map((product) => {
-            if (product.isActive) { return (
-              <div className="product" key={product.id}>
-                <img src={product.img_source} alt={product.name} />
-                <h3>{product.title}</h3>
-                <p>{'$'+(product.price).toFixed(2)}</p>
-                <p>Cantidad: {product.quantity}</p>
-                <button onClick={() => handleIncrease(product)}>Aumentar</button>
-                <button onClick={() => handleDecrease(product)}>Quitar</button>
+    <div>
+      {isLoading ? <LoaderComponent/>
+      : (
+        <div>
+          <HeaderComponent />
+          <NavBarComponent />
+          <div className='main-content'>
+            <div className='product-container'>
+            <h1>Lista de Productos</h1>
+            <div className='flex-product-container'>
+              <div className="product-list" >
+                {products.map((product) => {
+                  if (product.isActive) { return (
+                    <div className="product" key={product.id}>
+                      <img src={product.img_source} alt={product.name} />
+                      <h3>{product.title}</h3>
+                      <p>{'$'+(product.price).toFixed(2)}</p>
+                      <p>Cantidad: {product.quantity}</p>
+                      <button onClick={() => handleIncrease(product)}>Aumentar</button>
+                      <button onClick={() => handleDecrease(product)}>Quitar</button>
+                    </div>
+                  )
+                  }
+                })}
               </div>
-            )
-            }
-          })}
+            </div>
+          </div>
+
+          {/*Tabla*/}
+          <div className='table-container'>
+                <h1>Tabla</h1>
+            <table>
+              <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Precio Unitario</th>
+                  <th>Cantidad</th>
+                  <th>Subtotal</th>
+                </tr>
+              </thead>
+              <tbody>
+              {products.map(product => {
+                  if (product.isActive){ return (
+                    <tr key={product.id}>
+                      <td>{product.title}</td>
+                      <td>{'$'+product.price+".00"}</td>
+                      <td>{product.quantity}</td>
+                      <td>{'$'+(product.price * product.quantity)+".00"}</td>
+                    </tr>
+                  )}
+                })}
+
+              </tbody>
+            </table>
+            <div className="total">Total: ${total.toFixed(2)}</div>
+
+            <div className='button-main'>
+            <button onClick={createSell}>Resgitrar venta</button>
+            <button onClick={clean}>Cancelar</button>
+            </div>
+          </div>
+          <Toaster />
+          </div>
         </div>
-      </div>
+      )  
+    }
     </div>
-
-    {/*Tabla*/}
-    <div className='table-container'>
-          <h1>Tabla</h1>
-      <table>
-        <thead>
-          <tr>
-            <th>Nombre</th>
-            <th>Precio Unitario</th>
-            <th>Cantidad</th>
-            <th>Subtotal</th>
-          </tr>
-        </thead>
-        <tbody>
-        {products.map(product => {
-            if (product.isActive){ return (
-              <tr key={product.id}>
-                <td>{product.title}</td>
-                <td>{'$'+product.price+".00"}</td>
-                <td>{product.quantity}</td>
-                <td>{'$'+(product.price * product.quantity)+".00"}</td>
-              </tr>
-            )}
-          })}
-
-        </tbody>
-      </table>
-      <div className="total">Total: ${total.toFixed(2)}</div>
-
-      <div className='button-main'>
-      <button onClick={createSell}>Resgitrar venta</button>
-      <button onClick={clean}>Cancelar</button>
-      </div>
-    </div>
-    <Toaster />
-    </div>
-    </>
-    
   )
 }
