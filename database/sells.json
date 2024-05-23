@@ -1,0 +1,15 @@
+[
+{"type":"header","version":"5.2.1","comment":"Export to JSON plugin for PHPMyAdmin"},
+{"type":"database","name":"tortitec_db"},
+{"type":"table","name":"sells","database":"tortitec_db","data":
+[
+{"id":"34","sellDate":"2024-05-19 21:22:38","total":"340","details":"[{\"id\": 1, \"quantity\": 3}, {\"id\": 2, \"quantity\": 0}, {\"id\": 3, \"quantity\": 2}, {\"id\": 4, \"quantity\": 0}, {\"id\": 5, \"quantity\": 1}, {\"id\": 6, \"quantity\": 1}, {\"id\": 8, \"quantity\": 3}, {\"id\": 9, \"quantity\": 1}, {\"id\": 10, \"quantity\": 0}]","createdAt":"2024-05-19 21:22:38","updatedAt":"2024-05-19 21:22:38"},
+{"id":"35","sellDate":"2024-05-19 21:23:00","total":"170","details":"[{\"id\": 1, \"quantity\": 1}, {\"id\": 2, \"quantity\": 0}, {\"id\": 3, \"quantity\": 1}, {\"id\": 4, \"quantity\": 0}, {\"id\": 5, \"quantity\": 1}, {\"id\": 6, \"quantity\": 2}, {\"id\": 8, \"quantity\": 0}, {\"id\": 9, \"quantity\": 0}, {\"id\": 10, \"quantity\": 0}]","createdAt":"2024-05-19 21:23:00","updatedAt":"2024-05-19 21:23:00"},
+{"id":"36","sellDate":"2024-05-19 21:24:36","total":"196","details":"[{\"id\": 1, \"quantity\": 2}, {\"id\": 2, \"quantity\": 0}, {\"id\": 3, \"quantity\": 2}, {\"id\": 4, \"quantity\": 0}, {\"id\": 5, \"quantity\": 0}, {\"id\": 6, \"quantity\": 2}, {\"id\": 8, \"quantity\": 0}, {\"id\": 9, \"quantity\": 0}, {\"id\": 10, \"quantity\": 2}]","createdAt":"2024-05-19 21:24:36","updatedAt":"2024-05-19 21:24:36"},
+{"id":"37","sellDate":"2024-05-19 23:21:23","total":"160","details":"[{\"id\": 1, \"quantity\": 1}, {\"id\": 2, \"quantity\": 0}, {\"id\": 3, \"quantity\": 0}, {\"id\": 4, \"quantity\": 0}, {\"id\": 5, \"quantity\": 1}, {\"id\": 6, \"quantity\": 0}, {\"id\": 8, \"quantity\": 1}, {\"id\": 9, \"quantity\": 1}, {\"id\": 10, \"quantity\": 0}]","createdAt":"2024-05-19 23:21:23","updatedAt":"2024-05-19 23:21:23"},
+{"id":"38","sellDate":"2024-05-19 23:21:31","total":"363","details":"[{\"id\": 1, \"quantity\": 0}, {\"id\": 2, \"quantity\": 4}, {\"id\": 3, \"quantity\": 1}, {\"id\": 4, \"quantity\": 1}, {\"id\": 5, \"quantity\": 1}, {\"id\": 6, \"quantity\": 2}, {\"id\": 8, \"quantity\": 0}, {\"id\": 9, \"quantity\": 0}, {\"id\": 10, \"quantity\": 1}]","createdAt":"2024-05-19 23:21:31","updatedAt":"2024-05-19 23:21:31"},
+{"id":"39","sellDate":"2024-05-22 01:07:19","total":"270","details":"[{\"id\": 1, \"quantity\": 0}, {\"id\": 2, \"quantity\": 5}, {\"id\": 3, \"quantity\": 0}, {\"id\": 4, \"quantity\": 0}, {\"id\": 5, \"quantity\": 0}, {\"id\": 6, \"quantity\": 3}, {\"id\": 8, \"quantity\": 2}, {\"id\": 9, \"quantity\": 3}, {\"id\": 10, \"quantity\": 0}]","createdAt":"2024-05-22 01:07:19","updatedAt":"2024-05-22 01:07:19"},
+{"id":"72","sellDate":"2024-05-22 03:15:22","total":"75","details":"[{\"id\": 1, \"quantity\": 3}, {\"id\": 2, \"quantity\": 0}, {\"id\": 3, \"quantity\": 0}, {\"id\": 4, \"quantity\": 0}, {\"id\": 5, \"quantity\": 0}, {\"id\": 6, \"quantity\": 0}, {\"id\": 8, \"quantity\": 0}, {\"id\": 9, \"quantity\": 0}, {\"id\": 10, \"quantity\": 0}]","createdAt":"2024-05-22 03:15:22","updatedAt":"2024-05-22 03:15:22"}
+]
+}
+]
