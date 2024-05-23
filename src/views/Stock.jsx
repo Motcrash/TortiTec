@@ -4,6 +4,7 @@ import HeaderComponent from '../components/HeaderComponent'
 import NavBarComponent from '../components/NavBarComponent'
 import axios from 'axios';
 import toast, { Toaster } from 'react-hot-toast';
+import LoaderComponent from '../components/LoaderComponent';
 
 const URIStock = 'http://localhost:8000/stocks/';
 const URIProducts = 'http://localhost:8000/products/';
@@ -12,10 +13,16 @@ function Stock() {
 
     const [stock, setStock] = useState([]);
     const [products, setProduct] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
       getStock();
       getProduct();
+
+      const loadingTime = setTimeout(() => {
+        setIsLoading(false);
+      }, 1000);
+      return () => clearTimeout(loadingTime);
     }, []);
 
     const noifyDeactivate = () => toast.success('Producto desactivado con exito');
@@ -133,41 +140,46 @@ function Stock() {
       
   return (
     <div>
-    <HeaderComponent />
-    <NavBarComponent /> 
+      {isLoading ? (<LoaderComponent/>)
+      : (
+        <div>
+          <HeaderComponent />
+          <NavBarComponent /> 
 
-      {/*Tabla*/}
-      <div className='table-stock-container'>
-      <h1>Inventario</h1>
-      <table>
-        <thead>
-          <tr>
-            <th>Producto</th>
-            <th>Cantidad</th>
-            <th>Control de Inventario</th>
-            <th>Descontinuar</th>
-          </tr>
-        </thead>
-        <tbody>
-          {renderActiveProducts(products)}
-        </tbody>
-      </table>
+            {/*Tabla*/}
+            <div className='table-stock-container'>
+            <h1>Inventario</h1>
+            <table>
+              <thead>
+                <tr>
+                  <th>Producto</th>
+                  <th>Cantidad</th>
+                  <th>Control de Inventario</th>
+                  <th>Descontinuar</th>
+                </tr>
+              </thead>
+              <tbody>
+                {renderActiveProducts(products)}
+              </tbody>
+            </table>
 
-      <h2>Productos descontinuados</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Producto</th>
-            <th>Cantidad</th>
-            <th>activar</th>
-          </tr>
-        </thead>
-        <tbody>
-          {renderInactiveProducts(products)}
-        </tbody>
-      </table>
-    </div>
-    <Toaster />
+            <h2>Productos descontinuados</h2>
+            <table>
+              <thead>
+                <tr>
+                  <th>Producto</th>
+                  <th>Cantidad</th>
+                  <th>activar</th>
+                </tr>
+              </thead>
+              <tbody>
+                {renderInactiveProducts(products)}
+              </tbody>
+            </table>
+          </div>
+          <Toaster />
+        </div>
+      )}
     </div>
        
   )
