@@ -81,7 +81,7 @@ function Detail() {
             <tr>
               <th>Nombre</th>
               <th>Cantidad</th>
-              <th>precio</th>
+              <th>Precio</th>
               <th>Subtotal</th>
             </tr>
           </thead>
