@@ -32,6 +32,7 @@ export default function Login() {
       navigate('/main');
     } else {
       notifyErrorLogin();
+      navigate('/')
     }
   };
 
@@ -39,7 +40,9 @@ export default function Login() {
     <div className='mainContainer'>
       <HeaderComponent />
       
+      
       <div className='loginFormContainer'>
+
         <img src={userImg} alt='userImg' className='item2' />
         <div className='item3'>
           <InputComponent
