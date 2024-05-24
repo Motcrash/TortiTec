@@ -1,11 +1,11 @@
 import React from 'react'
 
 export default function ButtonComponent(props) {
-    const {text, bgColor, txtColor, borderRadius, height, width, margin, onclick} = props;
+    const {text, bgColor, txtColor, borderRadius, height, width, margin, onClick} = props;
     return (
        
     <button
-        onClick={onclick}
+        onClick={onClick}
         style={{
             backgroundColor:bgColor,
             color: txtColor,

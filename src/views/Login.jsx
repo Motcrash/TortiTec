@@ -6,6 +6,7 @@ import '../styles/headerStyle.css'
 import ButtonComponent from '../components/ButtonComponent'
 import HeaderComponent from '../components/HeaderComponent';
 import { Link  } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
 
 
@@ -14,7 +15,7 @@ export default function Login() {
  const [user, setUser] = useState('');
  const [password, setPassword] = useState('');
 
- const next =''
+ const navigate = useNavigate();
 
  const notifyErrorLogin = () => toast.error('Datos incorrectos, intente de nuevo')
 
@@ -29,15 +30,14 @@ export default function Login() {
  }
 
  const loginControl = () => {
-  // Logica autenticación
-  if(user=='hola' && password=='123'){
-    next = '/main'
-  }
-  else{
-    next = ''
+  // Lógica de autenticación
+  console.log();
+  if (user === 'hola' && password === '123') {
+    navigate('/main');
+  } else {
     notifyErrorLogin();
   }
- }
+};
 
   return (
     <div className='mainContainer'>
@@ -68,7 +68,6 @@ export default function Login() {
               onChange={passwordChange}
               />
 
-              <Link to={next} >
               <ButtonComponent
                 text='Ingresar'
                 bgColor='#0077cc'
@@ -77,8 +76,9 @@ export default function Login() {
                 height={35}
                 width={100}
                 margin={40}
+                onClick={loginControl}
               />
-              </Link>
+
           </div>
           <Toaster />
         </div>
