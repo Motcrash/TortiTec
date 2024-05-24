@@ -16,8 +16,8 @@ export default function Login() {
 
  const next =''
 
- const
- 
+ const notifyErrorLogin = () => toast.error('Datos incorrectos, intente de nuevo')
+
  const userChange = (e) => {
   setUser(e.target.value);
   console.log(user);
@@ -34,7 +34,8 @@ export default function Login() {
     next = '/main'
   }
   else{
-
+    next = ''
+    notifyErrorLogin();
   }
  }
 
@@ -79,7 +80,7 @@ export default function Login() {
               />
               </Link>
           </div>
-
+          <Toaster />
         </div>
     </div>
   )
