@@ -7,11 +7,13 @@ import NavBarComponent from '../components/NavBarComponent'
 import toast, { Toaster } from 'react-hot-toast';
 
 import axios from 'axios';
+import LoaderComponent from '../components/LoaderComponent';
 const URISales = 'http://localhost:8000/sells/';
 
 function Sales() {
 
   const [sales, setSales] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   // Toast
   const noifyDeleteSale = () => toast.error('Venta eliminada exitosamente!');
@@ -24,6 +26,11 @@ function Sales() {
 
   useEffect(() => {
     getSales();
+
+    const loadingTime = setTimeout(() => {
+      setIsLoading(false);
+    }, 200);
+    return () => clearTimeout(loadingTime);
   }, []);
 
   const getSales = async () => {
@@ -33,43 +40,49 @@ function Sales() {
 
 
   return (
-    <div >
-    <HeaderComponent />
-    <NavBarComponent />  
+    <div>
+      {(isLoading) ? <LoaderComponent/>
+      : (
+          <div >
+            <HeaderComponent />
+            <NavBarComponent />  
 
-    <div className='table-sales-container'>
-    <h1>Ventas</h1>
-    <table>
-      <thead>
-        <tr>
-          <th>Id Venta</th>
-          <th>Fecha De Venta</th>
-          <th>Detalles</th>
-          <th>Eliminar</th>
-        </tr>
-      </thead>
-      <tbody>
-      {sales.map(sale => (
-          <tr key={sale.id}>
-            <td>{sale.id}</td>
-            <td>{moment(sale.sellDate).format('DD-MM-YYYY HH:mm:ss')}</td>
-            <td>
-            <div> <Link to={`/detail/${sale.id}`} state={{ id: sale.id }}> <button className='detailButton'>Detalle de Venta</button> </Link></div>
-            </td>
-            <td>
-              <button className='deleteButton' onClick={() => deleteSale(sale.id)}>  
-                <img src='/src/assets/img/borrar.png' alt="deleteButton"/>
-              </button>
-            </td>
-            
-          </tr>
-        ))}
+            <div className='table-sales-container'>
+            <h1>Ventas</h1>
+            <table>
+              <thead>
+                <tr>
+                  <th>Id Venta</th>
+                  <th>Fecha De Venta</th>
+                  <th>Detalles</th>
+                  <th>Eliminar</th>
+                </tr>
+              </thead>
+              <tbody>
+              {sales.map(sale => (
+                  <tr key={sale.id}>
+                    <td>{sale.id}</td>
+                    <td>{moment(sale.sellDate).format('DD-MM-YYYY HH:mm:ss')}</td>
+                    <td>
+                    <div> <Link to={`/detail/${sale.id}`} state={{ id: sale.id }}> <button className='detailButton'>Detalle de Venta</button> </Link></div>
+                    </td>
+                    <td>
+                      <button className='deleteButton' onClick={() => deleteSale(sale.id)}>  
+                        <img src='/src/assets/img/borrar.png' alt="deleteButton"/>
+                      </button>
+                    </td>
+                    
+                  </tr>
+                ))}
 
-      </tbody>
-    </table>
-  </div>
-   <Toaster /> 
-  </div>
+              </tbody>
+            </table>
+          </div>
+          <Toaster /> 
+          </div>
+      )
+    }
+    </div>
 )
 }
 
