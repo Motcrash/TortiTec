@@ -5,7 +5,6 @@ export const getUser = async(req, res) => {
         const user = await UsersModel.findAll({
             where: {
                 user: req.params.user,
-                password: req.params.password
             }
         })
         res.json(user)
