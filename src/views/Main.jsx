@@ -29,7 +29,7 @@ export default function Main() {
       
       const loadingTime = setTimeout(() => {
         setIsLoading(false);
-      }, 800);
+      }, 200);
       return () => clearTimeout(loadingTime);
     }, []);
     

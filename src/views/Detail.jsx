@@ -39,7 +39,7 @@ function Detail() {
     getSale();
     const loadingTime = setTimeout(() => {
       setIsLoading(false);
-    }, 500);
+    }, 200);
 
     return () => clearTimeout(loadingTime);
   }, []);
