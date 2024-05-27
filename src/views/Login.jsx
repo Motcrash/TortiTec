@@ -18,12 +18,10 @@ export default function Login() {
 
   const userChange = (e) => {
     setUser(e.target.value);
-    console.log(user);
   };
 
   const passwordChange = (e) => {
     setPassword(e.target.value);
-    console.log(password);
   };
 
   const loginControl = () => {

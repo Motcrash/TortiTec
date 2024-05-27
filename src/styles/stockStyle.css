@@ -34,7 +34,7 @@ table{
 }
 
 .table-stock-container tbody tr:hover {
-    background-color: #ddd;
+    background-color: #dde2f5;
 }
 .buttons-stock {
     display: flex;
@@ -48,6 +48,12 @@ table{
     padding: 5px 10px;
 }
 
+td {
+    background-color: red;
+    align-items: center;
+}
+
 .buttons-stock img {
-    width: 40px;
+    width: 40px;   
+ 
 }
