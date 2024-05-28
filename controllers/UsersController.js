@@ -1,18 +1,22 @@
 import UsersModel from '../models/UsersModel.js'
 
-export const getUser = async(req, res) => {
+export const getUser = async (req, res) => {
     try {
         const user = await UsersModel.findAll({
             where: {
                 user: req.params.user,
+                password: req.params.password
             }
-        })
-        res.json(user)
+        });
+        if (user.length > 0) {
+            res.json(user);
+        } else {
+            res.status(404).json({ message: 'Usuario no encontrado' });
+        }
     } catch (error) {
-        res.json({ message: error.message });
+        res.status(500).json({ message: error.message });
     }
 }
-
 export const createUser = async(req, res) => {
     try {
         UsersModel.create(req.body);
