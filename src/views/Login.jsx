@@ -66,7 +66,7 @@ export default function Login({login , logout}) {
             type='text'
             hasLabel={true}
             text='Usuario:'
-            Placeholder='example@mail.com'
+            Placeholder='user'
             value={user}
             onChange={userChange}
           />
