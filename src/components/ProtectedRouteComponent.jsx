@@ -1,11 +1,11 @@
 import React from "react";
 import { Route, Navigate } from "react-router-dom";
 
-const ProtectedRoute = ({ element, isAuthenticated, to}) => {
+const ProtectedRoute = ({ element, isAuthenticated}) => {
     return isAuthenticated ? (
         element
     ) : (
-        <Navigate to={to} replace/>
+        <Navigate to={'/'} replace/>
     );
 };
 

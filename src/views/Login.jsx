@@ -39,7 +39,6 @@ export default function Login({login , logout}) {
     try {
       const response = await axios.get(`${URILogin}/users/${user}/${password}`);
       if (response.data && response.data.length > 0) {
-        //SSSSSSSSSS
         login();
         console.log(login());
         navigate('/main');

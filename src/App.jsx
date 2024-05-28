@@ -23,10 +23,10 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Login login={login} logout={logout}/>} />
-        <Route path="/main" element={<ProtectedRoute element={<Main />} isAuthenticated={isLogIn} to={'/main'}/>} />
-        <Route path="/stock" element={<ProtectedRoute element={<Stock />} isAuthenticated={isLogIn} to={'/stock'}/>} />
-        <Route path="/sales" element={<ProtectedRoute element={<Sales />} isAuthenticated={isLogIn} to={'/sales'}/>} />
-        <Route path="/detail/:id" element={<ProtectedRoute element={<Detail />} isAuthenticated={isLogIn} to={'/detail/:id'}/>} />
+        <Route path="/main" element={<ProtectedRoute element={<Main />} isAuthenticated={isLogIn} /> } />
+        <Route path="/stock" element={<ProtectedRoute element={<Stock />} isAuthenticated={isLogIn} />} />
+        <Route path="/sales" element={<ProtectedRoute element={<Sales />} isAuthenticated={isLogIn} />} />
+        <Route path="/detail/:id" element={<ProtectedRoute element={<Detail />} isAuthenticated={isLogIn} />} />
         {/* <Route path="/edit_product/:id" element={<Edit />} /> */}
       </Routes>
     </Router>
