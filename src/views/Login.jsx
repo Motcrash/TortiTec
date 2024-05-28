@@ -11,8 +11,8 @@ import axios from 'axios';
 
 const URILogin = 'http://localhost:8000';
 
+export default function Login({login}) {
 
-export default function Login() {
   const [user, setUser] = useState('');
   const [password, setPassword] = useState('');
 
@@ -34,6 +34,9 @@ export default function Login() {
     try {
       const response = await axios.get(`${URILogin}/users/${user}/${password}`);
       if (response.data && response.data.length > 0) {
+        //SSSSSSSSSS
+        login();
+        console.log(login());
         navigate('/main');
       } else {
         notifyErrorLogin()

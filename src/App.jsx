@@ -1,3 +1,4 @@
+import React, { useState } from "react"
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import Login from './views/Login';
 import Main from "./views/Main";
@@ -7,10 +8,20 @@ import Detail from "./views/Detail";
 // import Edit from "./views/Edit";
 
 function App() {
+  const [isLogIn, setLogIn] = useState(false);
+
+  const login = () => {
+    setLogIn(true);
+  }
+
+  const logout = () => {
+    setLogIn(false);
+  }
+
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route path="/" element={<Login login={login} />} />
         <Route path="/main" element={<Main />} />
         <Route path="/stock" element={<Stock />} />
         <Route path="/sales" element={<Sales />} />
