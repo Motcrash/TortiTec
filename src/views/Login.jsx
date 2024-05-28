@@ -7,6 +7,10 @@ import ButtonComponent from '../components/ButtonComponent';
 import HeaderComponent from '../components/HeaderComponent';
 import { useNavigate } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
+import axios from 'axios';
+
+const URILogin = 'http://localhost:8000';
+
 
 export default function Login() {
   const [user, setUser] = useState('');
@@ -18,19 +22,25 @@ export default function Login() {
 
   const userChange = (e) => {
     setUser(e.target.value);
+    console.log(user);
   };
 
   const passwordChange = (e) => {
     setPassword(e.target.value);
+    console.log(password);
   };
 
-  const loginControl = () => {
-    // Lógica de autenticación
-    if (user === 'hola' && password === '123') {
-      navigate('/main');
-    } else {
+  const loginControl = async () => {
+    try {
+      const response = await axios.get(`${URILogin}/users/${user}/${password}`);
+      if (response.data && response.data.length > 0) {
+        navigate('/main');
+      } else {
+        notifyErrorLogin();
+      }
+    } catch (error) {
       notifyErrorLogin();
-      navigate('/')
+      console.error('Error al iniciar sesión:', error);
     }
   };
 
