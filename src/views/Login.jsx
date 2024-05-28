@@ -18,7 +18,7 @@ export default function Login() {
 
   const navigate = useNavigate();
 
-  const notifyErrorLogin = () => toast.error('Error al rellenar campos, intente de nuevo');
+  const notifyErrorLogin = () => toast.error('Error al iniciar sesión');
 
   const userChange = (e) => {
     setUser(e.target.value);
