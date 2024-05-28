@@ -18,7 +18,7 @@ export default function Login() {
 
   const navigate = useNavigate();
 
-  const notifyErrorLogin = () => toast.error('Datos incorrectos, intente de nuevo');
+  const notifyErrorLogin = () => toast.error('Error al rellenar campos, intente de nuevo');
 
   const userChange = (e) => {
     setUser(e.target.value);
@@ -36,7 +36,7 @@ export default function Login() {
       if (response.data && response.data.length > 0) {
         navigate('/main');
       } else {
-        notifyErrorLogin();
+        notifyErrorLogin()
       }
     } catch (error) {
       notifyErrorLogin();
