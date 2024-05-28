@@ -1,12 +1,13 @@
-/*Tabla*/
-table{
-    padding: 10px;
-    margin: 20px;
-  }
-.table-stock-container h1{
+.header1-stock{
     padding: 15px;
     padding-bottom: 10px;
     color: rgb(2, 0, 71);
+}
+
+.table-stock-container  td {
+    justify-content: center;
+    align-items: center;
+    height: 100%;
 }
 .table-stock-container h2{
     padding: 15px;
@@ -39,6 +40,8 @@ table{
 .buttons-stock {
     display: flex;
     gap: 5px;
+    justify-content: center;
+    align-items: center;
 }
 
 .buttons-stock button {
@@ -48,12 +51,6 @@ table{
     padding: 5px 10px;
 }
 
-td {
-    background-color: red;
-    align-items: center;
-}
-
 .buttons-stock img {
-    width: 40px;   
- 
+    width: 45px;   
 }

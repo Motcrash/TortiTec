@@ -45,14 +45,14 @@ function Stock() {
               <td>{products.find(product => product.id === item.id).title}</td>
               <td>{item.quantity}</td>
               <td>
-              <div className='buttons-stock'>
-              <button className='detailButton' onClick={() => handleIncrease(item)}>
-                <img src='/src/assets/img/mas.png' alt="moreButton"/>
-              </button>
-              <button onClick={() => handleDecrease(item)}>
-                <img src='/src/assets/img/menos.png' alt="moreButton"/>
-              </button>
-              </div>
+                <div className='buttons-stock'>
+                  <button className='detailButton' onClick={() => handleIncrease(item)}>
+                    <img src='/src/assets/img/mas.png' alt="moreButton"/>
+                  </button>
+                  <button className='detailButton' onClick={() => handleDecrease(item)}>
+                    <img src='/src/assets/img/menos.png' alt="moreButton"/>
+                  </button>
+                </div>
               </td>
               <td>
               <div className='buttons-stock'>
@@ -146,9 +146,10 @@ function Stock() {
           <HeaderComponent />
           <NavBarComponent /> 
 
+            <h1 className='header1-stock'>Inventario</h1>
+
             {/*Tabla*/}
             <div className='table-stock-container'>
-            <h1>Inventario</h1>
             <table>
               <thead>
                 <tr>
