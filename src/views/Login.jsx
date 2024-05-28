@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import userImg from '../assets/img/user.png';
 import InputComponent from '../components/InputComponent';
 import '../styles/loginStyle.css';
@@ -11,12 +11,17 @@ import axios from 'axios';
 
 const URILogin = 'http://localhost:8000';
 
-export default function Login({login}) {
+export default function Login({login , logout}) {
 
   const [user, setUser] = useState('');
   const [password, setPassword] = useState('');
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    logout();
+    console.log('Cerraste sesión');
+  }, [logout])
 
   const notifyErrorLogin = () => toast.error('Error al iniciar sesión');
 

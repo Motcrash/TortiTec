@@ -22,7 +22,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Login login={login}/>} />
+        <Route path="/" element={<Login login={login} logout={logout}/>} />
         <Route path="/main" element={<ProtectedRoute element={<Main />} isAuthenticated={isLogIn} to={'/main'}/>} />
         <Route path="/stock" element={<ProtectedRoute element={<Stock />} isAuthenticated={isLogIn} to={'/stock'}/>} />
         <Route path="/sales" element={<ProtectedRoute element={<Sales />} isAuthenticated={isLogIn} to={'/sales'}/>} />
