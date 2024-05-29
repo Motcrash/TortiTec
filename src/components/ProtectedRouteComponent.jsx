@@ -5,7 +5,7 @@ const ProtectedRoute = ({ element, isAuthenticated}) => {
     return isAuthenticated ? (
         element
     ) : (
-        <Navigate to={'/'} replace/>
+        <Navigate to={'/loginError'} replace/>
     );
 };
 
