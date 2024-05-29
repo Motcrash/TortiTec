@@ -1,7 +1,16 @@
 import React from 'react'
 import HeaderComponent from '../components/HeaderComponent';
 import '../styles/loginError.css'
+import { useNavigate } from 'react-router-dom';
+
 function LoginError() {
+
+const navigate = useNavigate();
+const getBack = () => {
+    navigate('/');
+}
+
+
   return (
     <>
         <HeaderComponent />
@@ -10,7 +19,7 @@ function LoginError() {
         <img className='image-error' src='/src/assets/img/error.png' alt="errorIcon"/>
         </div>
         <div className='buttons-error'>
-        <button>Inicia Sesión</button>
+        <button onClick={getBack}>Inicia Sesión</button>
         </div>
     </>
   )

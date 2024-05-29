@@ -26,11 +26,11 @@
 
 .buttons-error button {
     border: 0;
-    background-color: #3621d2;
+    background-color: #0077cc;
     cursor: pointer;
     padding: 20px 30px;
     margin-top: 40px;
-    border-radius: 5px;
+    border-radius: 15px;
     transition: background-color 0.3s ease;
     color: aliceblue;
 }
