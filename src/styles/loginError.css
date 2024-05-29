@@ -1,24 +1,42 @@
-.header1-error{
-    padding: 15px;
-    padding-bottom: 10px;
-    text-align: center;
-    color: rgb(2, 0, 71);
-}
-
-.buttons-error {
+.container-error {
     display: flex;
-    gap: 5px;
     justify-content: center;
     align-items: center;
 }
 
-.buttons-error button {
-    border: 0px;
-    background-color: #dddddd00;
-    cursor: pointer;
-    padding: 5px 10px;
+.header1-error {
+    padding: 30px;
+    padding-bottom: 50px;
+    text-align: center;
+    color: rgb(2, 0, 71);
+    margin-bottom: 20px;
+    font-weight: bold;
 }
 
-.buttons-error img {
-    width: 45px;   
+.image-error {
+    width: 500px;
+    height: 500px;
 }
+.buttons-error {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+}
+
+.buttons-error button {
+    border: 0;
+    background-color: #3621d2;
+    cursor: pointer;
+    padding: 20px 30px;
+    margin-top: 40px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    color: aliceblue;
+}
+
+.buttons-error button:hover {
+    background-color: #1a1a37;
+}
+
+
