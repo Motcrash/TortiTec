@@ -20,6 +20,7 @@ export default function Main() {
   const noifySale = () => toast.success('Venta registrada exitosamente!');
   const notifyOutOfStock = () => toast.error('No hay suficientes productos');
   const notifyNull = () => toast.error('No hay productos agregados');
+  const notifyClear = () => toast.success('Venta cancelada');
 
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -71,7 +72,8 @@ export default function Main() {
             details: details
           });
           noifySale();
-          clean();
+          const updatedProducts = products.map((p) => ({ ...p, quantity: 0 }));
+          setProducts(updatedProducts);
         }else notifyOutOfStock();
       }
 
@@ -100,6 +102,7 @@ export default function Main() {
   const clean = () => {
     const updatedProducts = products.map((p) => ({ ...p, quantity: 0 }));
     setProducts(updatedProducts);
+    notifyClear();
   };
 
    // Calcular el total de la venta
