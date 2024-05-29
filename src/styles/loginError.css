@@ -1,0 +1,24 @@
+.header1-error{
+    padding: 15px;
+    padding-bottom: 10px;
+    text-align: center;
+    color: rgb(2, 0, 71);
+}
+
+.buttons-error {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+}
+
+.buttons-error button {
+    border: 0px;
+    background-color: #dddddd00;
+    cursor: pointer;
+    padding: 5px 10px;
+}
+
+.buttons-error img {
+    width: 45px;   
+}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import userImg from '../assets/img/user.png';
 import InputComponent from '../components/InputComponent';
 import '../styles/loginStyle.css';
@@ -11,14 +11,19 @@ import axios from 'axios';
 
 const URILogin = 'http://localhost:8000';
 
+export default function Login({login , logout}) {
 
-export default function Login() {
   const [user, setUser] = useState('');
   const [password, setPassword] = useState('');
 
   const navigate = useNavigate();
 
-  const notifyErrorLogin = () => toast.error('Error al rellenar campos, intente de nuevo');
+  useEffect(() => {
+    logout();
+    console.log('Cerraste sesión');
+  }, [logout])
+
+  const notifyErrorLogin = () => toast.error('Error al iniciar sesión');
 
   const userChange = (e) => {
     setUser(e.target.value);
@@ -34,6 +39,8 @@ export default function Login() {
     try {
       const response = await axios.get(`${URILogin}/users/${user}/${password}`);
       if (response.data && response.data.length > 0) {
+        login();
+        console.log(login());
         navigate('/main');
       } else {
         notifyErrorLogin()
@@ -59,7 +66,7 @@ export default function Login() {
             type='text'
             hasLabel={true}
             text='Usuario:'
-            Placeholder='example@mail.com'
+            Placeholder='user'
             value={user}
             onChange={userChange}
           />
