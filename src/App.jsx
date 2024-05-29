@@ -5,6 +5,7 @@ import Main from "./views/Main";
 import Stock from "./views/Stock";
 import Sales from "./views/Sales";
 import Detail from "./views/Detail";
+import LoginError from "./views/LoginError";
 // import Edit from "./views/Edit";
 import ProtectedRoute from './components/ProtectedRouteComponent';
 
@@ -23,6 +24,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Login login={login} logout={logout}/>} />
+        <Route path="/loginError" element={<LoginError />}/>
         <Route path="/main" element={<ProtectedRoute element={<Main />} isAuthenticated={isLogIn} /> } />
         <Route path="/stock" element={<ProtectedRoute element={<Stock />} isAuthenticated={isLogIn} />} />
         <Route path="/sales" element={<ProtectedRoute element={<Sales />} isAuthenticated={isLogIn} />} />

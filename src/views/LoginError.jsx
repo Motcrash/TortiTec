@@ -4,7 +4,8 @@ import HeaderComponent from '../components/HeaderComponent';
 function LoginError() {
   return (
     <div>
-        
+        <HeaderComponent />
+        <h1>ERROR PAPU</h1>
     </div>
   )
 }
