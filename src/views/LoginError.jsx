@@ -19,7 +19,7 @@ const getBack = () => {
         <img className='image-error' src='/src/assets/img/error.png' alt="errorIcon"/>
         </div>
         <div className='buttons-error'>
-        <button onClick={getBack}>Inicia Sesión</button>
+        <button onClick={getBack}>Iniciar Sesión</button>
         </div>
     </>
   )
