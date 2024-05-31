@@ -1,5 +1,5 @@
 # Punto de venta "El punto"
-Este es un proyecto realizado en el curso de ingeniería de software del Instituto Tecnológico de Chihuahua II
+Este es un proyecto realizado en el curso de ingeniería de software del Instituto Tecnológico de Chihuahua II, el proyecto consiste en un punto de venta el cual principalmente está diseñado para una tortillería. Para la realización del proyecto se utilizó JS, React y node.
 
 ## Inicialización del proyecto
 #### Primero se debe clonar el repositorio, para ello se necesita ejecutar el siguiente comando en la terminal
