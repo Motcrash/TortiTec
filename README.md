@@ -4,7 +4,8 @@ Este es un proyecto realizado en el curso de ingeniería de software del Institu
 ## Inicialización del proyecto
 #### Primero se debe clonar el repositorio, para ello se necesita ejecutar el siguiente comando en la terminal
 * `git clone https://github.com/Motcrash/TortiTec/`
-#### Hay que importar el archivo de la base de datos de mysql (preferiblemente en phpmyadmin) ubicado en la direccion `tortitec\database\tortitec_sql` 
+#### Hay que importar el archivo de la base de datos de mysql (preferiblemente en phpmyadmin)
+ubicado en la direccion `tortitec\database\tortitec_db.sql`
 #### Luego ejecutamos el siguiente comando en la carpeta donde hayamos clonado el repositorio
 * `npm i`
 #### Por último ejecutamos los siguientes dos comandos:
