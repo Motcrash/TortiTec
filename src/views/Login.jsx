@@ -20,19 +20,16 @@ export default function Login({login , logout}) {
 
   useEffect(() => {
     logout();
-    console.log('Cerraste sesión');
   }, [logout])
 
-  const notifyErrorLogin = () => toast.error('Error al iniciar sesión');
+  const notifyErrorLogin = () => toast.error('El usuario o contraseña son incorrectos');
 
   const userChange = (e) => {
     setUser(e.target.value);
-    console.log(user);
   };
 
   const passwordChange = (e) => {
     setPassword(e.target.value);
-    console.log(password);
   };
 
   const loginControl = async () => {
@@ -40,14 +37,12 @@ export default function Login({login , logout}) {
       const response = await axios.get(`${URILogin}/users/${user}/${password}`);
       if (response.data && response.data.length > 0) {
         login();
-        console.log(login());
         navigate('/main');
       } else {
         notifyErrorLogin()
       }
     } catch (error) {
       notifyErrorLogin();
-      console.error('Error al iniciar sesión:', error);
     }
   };
 
