@@ -1,65 +1,105 @@
-import React, {useEffect, useState} from 'react'
-import '../styles/stockStyle.css'
+import React, {useContext, useEffect, useState} from 'react'
+import axios from 'axios';
+import { Link } from 'react-router-dom';
+import toast, { Toaster } from 'react-hot-toast';
+
 import HeaderComponent from '../components/HeaderComponent'
 import NavBarComponent from '../components/NavBarComponent'
-import axios from 'axios';
-import toast, { Toaster } from 'react-hot-toast';
 import LoaderComponent from '../components/LoaderComponent';
+import '../styles/stockStyle.css'
+import { ProductsContext } from '../context/ProductsContext';
 
-const URIStock = 'http://localhost:8000/stocks/';
-const URIProducts = 'http://localhost:8000/products/';
+function Stock() {;
 
-function Stock() {
+    const {products, setProducts, isLoading, URIProducts} = useContext(ProductsContext);
 
-    const [stock, setStock] = useState([]);
-    const [products, setProduct] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
+    const noifyDeactivate = () => toast.success('Producto desactivado con exito', { id: 'deactivate', duration: 1000});
+    const notifyActivate = () => toast.success('Producto activado con exito', { id: 'activate', duration: 1000});
+    const notifyDeleted = () => toast.success('Producto eliminado con exito', { id: 'deleted', duration: 1000});
 
-    useEffect(() => {
-      getStock();
-      getProduct();
+    const handleIncrease = async (product) => {
+      const updatedProducts = products.map((prod) =>
+        prod.id === product.id ? { ...prod, stock: prod.stock + 1 } : prod
+      );
+      setProducts(updatedProducts);
+      await axios.put(`${URIProducts}${product.id}`, {
+        stock: product.stock + 1
+      })
+    };
+  
+    const handleDecrease = async (product) => {
+      const updatedProducts = products.map((prod) =>
+        prod.id === product.id ? { ...prod, stock: prod.stock - 1 } : prod
+      );
+      setProducts(updatedProducts);
+      await axios.put(`${URIProducts}${product.id}`, {
+        stock: product.stock - 1
+      })
+    };
 
-      const loadingTime = setTimeout(() => {
-        setIsLoading(false);
-      }, 200);
-      return () => clearTimeout(loadingTime);
-    }, []);
+    const deactivateProduct = async (product) => {
+      const updatedProducts = products.map((prod) =>
+        prod.id === product.id
+        ? { ...prod, isActive: false } : prod
+      );
+      setProducts(updatedProducts);
+      await axios.put(`${URIProducts}${product.id}`, {
+        isActive: false
+      })
+      noifyDeactivate();
+    };
 
-    const noifyDeactivate = () => toast.success('Producto desactivado con exito');
-    const notifyActivate = () => toast.success('Producto activado con exito');
-    
-    const getStock = async () => {
-        const res = await axios.get(URIStock);
-        setStock(res.data);
-      }
-      
-      const getProduct = async () => {
-        const res = await axios.get(URIProducts);
-        setProduct(res.data);
-    }
+    const activateProduct = async (product) => {
+      const updatedProducts = products.map((prod) =>
+        prod.id === product.id
+        ? { ...prod, isActive: true } : prod
+      );
+      setProducts(updatedProducts);
+      await axios.put(`${URIProducts}${product.id}`, {
+        isActive: true
+      })
+      const activateToast = notifyActivate();
+    };
 
-    const renderActiveProducts = (products) => {
-      return (stock.map(item => {
-        if (item.isActive == true) { return(
-            <tr key={item.id}>
-              <td>{products.find(product => product.id === item.id).title}</td>
-              <td>{item.quantity}</td>
+    const deleteProduct = async (id) => {
+      const updatedProducts = products.filter(product => product.id !== id);
+      setProducts(updatedProducts);
+      axios.delete(`${URIProducts}${id}`);
+      notifyDeleted();
+    };
+
+    const renderActiveProducts = () => {
+      return (products.map(product => {
+        if (product.isActive == true) { return(
+            <tr key={product.id}>
+              <td>{product.title}</td>
+              <td>{product.stock}</td>
+
               <td>
                 <div className='buttons-stock'>
-                  <button className='detailButton' onClick={() => handleIncrease(item)}>
-                    <img src='/src/assets/img/mas.png' alt="moreButton"/>
+                  <button className='detailButton' onClick={() => handleIncrease(product)}>
+                    <img src='/src/assets/img/mas.png' alt="moreButton" draggable="false"/>
                   </button>
-                  <button className='detailButton' onClick={() => handleDecrease(item)}>
-                    <img src='/src/assets/img/menos.png' alt="moreButton"/>
+                  <button className='detailButton' onClick={() => handleDecrease(product)}>
+                    <img src='/src/assets/img/menos.png' alt="lessButton" draggable="false"/>
                   </button>
                 </div>
               </td>
+
               <td>
-              <div className='buttons-stock'>
-              <button className='detailButton' onClick={() => deactivateProduct(item)}>
-                <img src='/src/assets/img/activar.png' alt="moreButton"/>
-              </button>
-              </div>
+                <div className='buttons-stock'>
+                  <Link to={`/edit_product/${product.id}`} state={{ id: product.id }} draggable="false">
+                    <button className='detailButton'> <img src='/src/assets/img/editar.png' alt="editButton" draggable="false"/> </button>
+                  </Link>
+                </div>
+              </td>
+
+              <td>
+                <div className='buttons-stock'>
+                  <button className='detailButton' onClick={() => deactivateProduct(product)}>
+                    <img src='/src/assets/img/activar.png' alt="deactivateButton" draggable="false"/>
+                  </button>
+                </div>
               </td>
             </tr>
           )
@@ -67,76 +107,34 @@ function Stock() {
       }))
     }
 
-    const renderInactiveProducts = (products) => {
-      return (stock.map(item => {
-        if (item.isActive == false) { return(
-            <tr key={item.id}>
-              <td>{products.find(product => product.id === item.id).title}</td>
-              <td>{item.quantity}</td>
+    const renderInactiveProducts = () => {
+      return (products.map(product => {
+        if (product.isActive == false) { return(
+            <tr key={product.id}>
+              <td>{product.title}</td>
+              <td>{product.stock}</td>
+              
               <td>
-              <div className='buttons-stock'>
-              <button className='detailButton' onClick={() => activateProduct(item)}>
-                <img src='/src/assets/img/desactivar.png' alt="moreButton"/>
-              </button>
-              </div>
+                <div className='buttons-stock'>
+                  <button className='detailButton' onClick={() => deleteProduct(product.id)}>
+                    <img src='/src/assets/img/borrar.png' alt="deleteButton" draggable="false"/>
+                  </button>
+                </div>
               </td>
+
+              <td>
+                <div className='buttons-stock'>
+                  <button className='detailButton' onClick={() => activateProduct(product)}>
+                    <img src='/src/assets/img/desactivar.png' alt="moreButton" draggable="false"/>
+                  </button>
+                </div>
+              </td>
+              
             </tr>
           )
         }
       }))
-    }
-
-    const handleIncrease = async (item) => {
-        const updatedItems = stock.map((i) =>
-          i.id === item.id ? { ...i, quantity: i.quantity + 1 } : i
-        );
-        setStock(updatedItems);
-
-        if(item.quantity < 200){
-          await axios.put(`${URIStock}${item.id}`, {
-            quantity: item.quantity + 1
-          })
-        }
-      };
-    
-      const handleDecrease = async (item) => {
-        const updatedItems = stock.map((i) =>
-          i.id === item.id && i.quantity > 0
-          ? { ...i, quantity: i.quantity - 1 } : i
-        );
-        setStock(updatedItems);
-
-        if(item.quantity > 0){
-          await axios.put(`${URIStock}${item.id}`, {
-            quantity: item.quantity - 1
-          })
-        }
-      };
-
-      const deactivateProduct = async (item) => {
-        const updatedItems = stock.map((i) =>
-          i.id === item.id
-          ? { ...i, isActive: false } : i
-        );
-        setStock(updatedItems);
-        await axios.put(`${URIStock}${item.id}`, {
-          isActive: false
-        })
-        noifyDeactivate();
-      };
-
-      const activateProduct = async (item) => {
-        const updatedItems = stock.map((i) =>
-          i.id === item.id
-          ? { ...i, isActive: true } : i
-        );
-        setStock(updatedItems);
-        await axios.put(`${URIStock}${item.id}`, {
-          isActive: true
-        })
-        notifyActivate();
-      };
-      
+    } 
       
   return (
     <div>
@@ -146,16 +144,17 @@ function Stock() {
           <HeaderComponent />
           <NavBarComponent /> 
 
-            <h1 className='header1-stock'>Inventario</h1>
+          <h1 className='header1-stock'>Inventario</h1>
+          <Link to={`/add_product`} draggable="false"> <button className='addProductButton'>Añadir producto</button> </Link>
 
-            {/*Tabla*/}
-            <div className='table-stock-container'>
+          <div className='table-stock-container'>
             <table>
               <thead>
                 <tr>
                   <th>Producto</th>
                   <th>Cantidad</th>
                   <th>Control de Inventario</th>
+                  <th>Editar producto</th>
                   <th>Descontinuar</th>
                 </tr>
               </thead>
@@ -170,7 +169,8 @@ function Stock() {
                 <tr>
                   <th>Producto</th>
                   <th>Cantidad</th>
-                  <th>activar</th>
+                  <th>Eliminar</th>
+                  <th>Activar</th>
                 </tr>
               </thead>
               <tbody>

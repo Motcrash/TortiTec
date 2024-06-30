@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import userImg from '../assets/img/user.png';
+import userImg from '../assets/img/usuario.png';
 import InputComponent from '../components/InputComponent';
 import '../styles/loginStyle.css';
 import '../styles/headerStyle.css';
@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
 import axios from 'axios';
 
-const URILogin = 'http://localhost:8000';
+const URILogin = 'http://localhost:8000/users';
 
 export default function Login({login , logout}) {
 
@@ -34,12 +34,10 @@ export default function Login({login , logout}) {
 
   const loginControl = async () => {
     try {
-      const response = await axios.get(`${URILogin}/users/${user}/${password}`);
+      const response = await axios.get(`${URILogin}/${user}/${password}`);
       if (response.data && response.data.length > 0) {
         login();
         navigate('/main');
-      } else {
-        notifyErrorLogin()
       }
     } catch (error) {
       notifyErrorLogin();
@@ -79,7 +77,7 @@ export default function Login({login , logout}) {
 
           <ButtonComponent
             text='Ingresar'
-            bgColor='#0077cc'
+            bgColor='#2f80ed'
             txtColor='#fff'
             borderRadius={15}
             height={35}

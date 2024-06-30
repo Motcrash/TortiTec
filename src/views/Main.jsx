@@ -1,88 +1,85 @@
-import React, {useEffect, useState} from 'react'
+import React, { useContext } from 'react'
 import '../styles/headerStyle.css'
 import '../styles/mainStyle.css'
 import HeaderComponent from '../components/HeaderComponent'
 import NavBarComponent from '../components/NavBarComponent'
 import toast, { Toaster } from 'react-hot-toast';
 
-
+import { ProductsContext } from '../context/ProductsContext.jsx';
 
 import axios from 'axios';
 import LoaderComponent from '../components/LoaderComponent'
-
-const URIMain = 'http://localhost:8000/main/';
-const URISells = 'http://localhost:8000/sells/';
-const URIStock = 'http://localhost:8000/stocks/';
+import { SellsContext } from '../context/SellsContext.jsx'
 
 
 export default function Main() {
   // Toast
-  const noifySale = () => toast.success('Venta registrada exitosamente!');
-  const notifyOutOfStock = () => toast.error('No hay suficientes productos');
-  const notifyNull = () => toast.error('No hay productos agregados');
-  const notifyClear = () => toast.success('Venta cancelada');
+  const noifySale = () => toast.success('Venta registrada exitosamente!', { id: 'sale', duration: 1000});
+  const notifyOutOfStock = () => toast.error('No hay suficientes productos', { id: 'noProducts', duration: 1000});
+  const notifyNull = () => toast.error('No hay productos agregados', { id: 'null', duration: 1000});
+  const notifyClear = () => toast.success('Venta cancelada', { id: 'cancel', duration: 1000});
+  const notifyError = () => toast.error('Ocurrió un error', { id: 'error', duration: 1000});
+  
+  const { products, setProducts, isLoading, getProducts, URIProducts } = useContext( ProductsContext );
+  const { getSells, URISells } = useContext( SellsContext );
 
-  const [products, setProducts] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-
-    useEffect(() => {
-      getProducts();
-      
-      const loadingTime = setTimeout(() => {
-        setIsLoading(false);
-      }, 200);
-      return () => clearTimeout(loadingTime);
-    }, []);
-    
-    const getProducts = async () => {
-        const res = await axios.get(URIMain);
-        setProducts(res.data);
-    }
 
     const createSell = async () => {
-      let error = false;
-      if (total === 0) {
+      // La venta no tiene productos
+      if (total <= 0) {
         notifyNull();
+        return;
       }else{
+        // Si el total es mayor a 0 crea un arreglo con los productos y su precio
         let details = products.map(product => ( {
-          id: product.id,
+          product_id: product.id,
+          title: product.title,
+          price: product.price,
           quantity: product.quantity
         }));
-        details = details.filter(detail => detail.quantity > 0)
-        details.map( detail => {
-          const stock = products.find(product => product.id === detail.id).stock;
-          if (detail.quantity > stock) {
-            error = true;
-            return;
-          }else{
-            if (detail.quantity == 0) {
-              return;
-            }else{
-              axios.put(`${URIStock}${detail.id}`, {
-                quantity: stock - detail.quantity
-              })
-            }
-          }
 
-        })
-  
-        if (!error) {
+        // Elimina del detalle los productos que no se vendieron  (quantity = 0)
+        details = details.filter(detail => detail.quantity > 0);
+
+        details.map(async detail => {
+          const stock = products.find(product => product.title === detail.title).stock;
+            try {
+              await axios.put(`${URIProducts}${detail.product_id}`, {
+                stock: stock - detail.quantity
+              });
+              getProducts();
+            } catch (error) {
+              notifyError();
+            };
+        });
+
+        try {
           await axios.post(URISells, {
+            details: details,
             total: total,
-            details: details
+            
           });
-          noifySale();
-          const updatedProducts = products.map((p) => ({ ...p, quantity: 0 }));
-          setProducts(updatedProducts);
-        }else notifyOutOfStock();
+          getSells();
+        } catch (error) {
+          notifyError();
+        }
+
+        const updatedProducts2 = products.map((product) => ({ ...product, quantity: 0 }));
+        setProducts(updatedProducts2);
+        
+        noifySale();
       }
 
     }
   
 
   const handleIncrease = (product) => {
+    if (product.quantity >= product.stock) {
+      notifyOutOfStock();
+      return;
+    }
     const updatedProducts = products.map((p) =>
-      p.id === product.id ? { ...p, quantity: p.quantity + 1 } : p
+      (p.id === product.id) ? { ...p, quantity: p.quantity + 1 } : p
     );
     setProducts(updatedProducts);
   };
@@ -122,13 +119,21 @@ export default function Main() {
               <div className="product-list" >
                 {products.map((product) => {
                   if (product.isActive) { return (
-                    <div className="product" key={product.id}>
-                      <img src={product.img_source} alt={product.name} />
+                    <div 
+                      className={product.stock === 0  ? "product product-out-of-stock" : "product"}
+                      key={product.id}
+                    >
+                      <img src={product.image} alt={product.name} draggable="false"/>
                       <h3>{product.title}</h3>
                       <p>{'$'+(product.price).toFixed(2)}</p>
                       <p>Cantidad: {product.quantity}</p>
-                      <button onClick={() => handleIncrease(product)}>Aumentar</button>
-                      <button onClick={() => handleDecrease(product)}>Quitar</button>
+                      <p>{product.stock === 0 ? "No hay existencia" : `Stock: ${product.stock}`}</p>
+                      <button
+                        onClick={() => handleIncrease(product)}
+                        disabled={product.stock === 0  ? true : false}
+                        >Aumentar
+                      </button>
+                      <button  onClick={() => handleDecrease(product)}>Quitar</button>
                     </div>
                   )
                   }
@@ -139,7 +144,7 @@ export default function Main() {
 
           {/*Tabla*/}
           <div className='table-container'>
-                <h1>Tabla</h1>
+                <h1>Desglose de compra</h1>
             <table>
               <thead>
                 <tr>
@@ -151,12 +156,12 @@ export default function Main() {
               </thead>
               <tbody>
               {products.map(product => {
-                  if (product.isActive){ return (
+                  if (product.quantity > 0 ){ return ( 
                     <tr key={product.id}>
                       <td>{product.title}</td>
-                      <td>{'$'+product.price+".00"}</td>
+                      <td>{'$'+(product.price).toFixed(2)}</td>
                       <td>{product.quantity}</td>
-                      <td>{'$'+(product.price * product.quantity)+".00"}</td>
+                      <td>{'$'+(product.price * product.quantity).toFixed(2)}</td>
                     </tr>
                   )}
                 })}
