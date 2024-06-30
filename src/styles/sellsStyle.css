@@ -1,0 +1,66 @@
+/*Tabla*/
+table{
+    padding: 10px;
+    margin: 20px;
+  }
+
+  .table-sells-container h1{
+    padding: 15px;
+    padding-bottom: 10px;
+    color: rgb(2, 0, 71);
+}
+
+.table-sells-container table {
+    width: 90%;
+    border-collapse: collapse;
+}
+
+.table-sells-container th,
+.table-sells-container td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+td >  button  {
+    display: flex;
+    align-items: center;
+}
+
+button{
+    border: 0px;
+    background-color: #dddddd00;
+}
+
+td >  div {
+    display: flex;
+    align-items: center;
+}
+
+.table-sells-container th {
+    background-color: #f2f2f2;
+}
+
+.table-sells-container tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.table-sells-container tbody tr:hover {
+    background-color: #ddd;
+}
+
+.detailButton{
+    padding: 5px 10px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.deleteButton img{
+   cursor: pointer;
+   width: 50px;
+}
