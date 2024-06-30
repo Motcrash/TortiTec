@@ -13,7 +13,7 @@ const links = [
   },
   {
     name: "Historial",
-    href: "/sales"
+    href: "/sells"
   },
   {
     name: "Cerrar Sesión",
