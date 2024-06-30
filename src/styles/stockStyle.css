@@ -3,7 +3,6 @@
     padding-bottom: 10px;
     color: rgb(2, 0, 71);
 }
-
 .table-stock-container  td {
     justify-content: center;
     align-items: center;
@@ -37,6 +36,20 @@
 .table-stock-container tbody tr:hover {
     background-color: #dde2f5;
 }
+
+.addProductButton {
+    background-color: #2f80ed;
+    height: 30px;
+    border-radius: 20px;
+    padding: 0px 15px;
+    color: white;
+    font-size: medium;
+    cursor: pointer;
+    margin-left: 20px;
+    align-items: center;
+
+}
+
 .buttons-stock {
     display: flex;
     gap: 5px;

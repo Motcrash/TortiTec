@@ -31,18 +31,13 @@
 
 .product-list {
     display: flex;
-    flex-wrap: wrap; /* Esto permite que los productos se envuelvan a la siguiente línea si no hay suficiente espacio */
-    justify-content: center; /* Esto centrará los productos horizontalmente */
+    flex-wrap: wrap; 
+    justify-content: center;
   }
     
 .table-container {
     margin-right: 0;
     margin-top: 20px;
-}
-
-button, img{
-  user-select: none;
-  
 }
 
 /*Tabla*/
@@ -94,11 +89,22 @@ table{
   color: #fcfbfb;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease-in-out;
-  
 }
+
+.product-out-of-stock{
+  background-color: #3b4f70;
+  border: 2px solid #242e3f;
+}
+
 .product:hover {
   transform: translateY(-5px);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.product-out-of-stock:hover {
+  transform: translateY(0px);
+  background-color: #3b4f70;
+  cursor: not-allowed;
 }
 
 .product img {
@@ -129,8 +135,17 @@ table{
     cursor: pointer;
 }
 
+.product-out-of-stock button {
+  background-color: #959ea7;
+  cursor: not-allowed;
+}
+
 .product button:hover {
     background-color: #0056b3;
+}
+
+.product-out-of-stock button:hover {
+  background-color: #959ea7;
 }
 
 /* Button para registro y limpiar */
