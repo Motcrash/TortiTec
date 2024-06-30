@@ -5,8 +5,9 @@ import { DataTypes } from 'sequelize';
 
 const SellsModel = db.define('sells',{
     sellDate: {type: DataTypes.DATE},
-    total: {type: DataTypes.DOUBLE},
     details: {type: DataTypes.JSON},
+    total: {type: DataTypes.DOUBLE},
+    user_id: {type: DataTypes.INTEGER}
 });
 
 export default SellsModel;

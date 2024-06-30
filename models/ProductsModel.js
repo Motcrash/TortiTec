@@ -4,10 +4,11 @@ import { DataTypes } from 'sequelize';
 
 const ProductsModel = db.define('products', {
     title: {type: DataTypes.STRING},
-    description: {type: DataTypes.STRING},
     price: {type: DataTypes.DOUBLE},
-    img_source: {type: DataTypes.TEXT},
-    quantity: {type: DataTypes.INTEGER}
+    image: {type: DataTypes.TEXT},
+    description: {type: DataTypes.TEXT},
+    stock: {type: DataTypes.INTEGER},
+    isActive: {type: DataTypes.BOOLEAN}
 });
 
 export default ProductsModel;
