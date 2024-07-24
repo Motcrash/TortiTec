@@ -13,7 +13,7 @@ import { ProductsProvider } from './context/ProductsContext.jsx'
 import { SellsProvider } from "./context/SellsContext.jsx";
 
 function App() {
-  const [isLogIn, setLogIn] = useState(false);
+  const [isLogIn, setLogIn] = useState(true);
 
   const login = () => {
     setLogIn(true);

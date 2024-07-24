@@ -171,7 +171,7 @@ export default function Main() {
             <div className="total">Total: ${total.toFixed(2)}</div>
 
             <div className='button-main'>
-            <button onClick={createSell}>Resgitrar venta</button>
+            <button onClick={createSell}>Registrar venta</button>
             <button onClick={clean}>Cancelar</button>
             </div>
           </div>

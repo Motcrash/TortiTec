@@ -27,6 +27,7 @@
 
 .table-stock-container th {
     background-color: #f2f2f2;
+    text-align: center;
 }
 
 .table-stock-container tbody tr:nth-child(even) {

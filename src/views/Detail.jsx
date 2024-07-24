@@ -6,6 +6,7 @@ import '../styles/detailStyle.css';
 import HeaderComponent from '../components/HeaderComponent';
 import NavBarComponent from '../components/NavBarComponent';
 import LoaderComponent from '../components/LoaderComponent';
+import moment from 'moment';
 
 const notifyError = () => toast.error("Ocurrió un error al cargar los datos", { id: "dataError", duration: 1000 });
 
@@ -40,8 +41,8 @@ function Detail() {
       <tr key={detail.title}>
         <td>{detail.title}</td>
         <td>{detail.quantity}</td>
-        <td>{detail.price}</td>
-        <td>{detail.price * detail.quantity}</td>
+        <td>${detail.price}</td>
+        <td>${detail.price * detail.quantity}</td>
       </tr>
     ));
   }
@@ -58,6 +59,7 @@ function Detail() {
           {/* Tabla de Detalle */}
           <div className='table-detail-container'>
             <h1>Venta #{id}</h1>
+            <h2>Fecha: {moment(sell.sellDate).format('DD-MM-YYYY HH:mm:ss')}</h2>
             <table>
               <thead>
                 <tr>
