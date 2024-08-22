@@ -4,8 +4,8 @@ import { createProduct, deleteProduct, getAllProducts, getProduct, updateProduct
 const productsRouter = express.Router();
 
 // Rutas para acceder a las ventas
-productsRouter.get('/', getAllProducts);
-productsRouter.get('/:id', getProduct);
+productsRouter.get('/:user_id', getAllProducts);
+productsRouter.get('/:user_id/:id', getProduct);
 
 // Rutas para crear una venta
 productsRouter.post('/', createProduct);

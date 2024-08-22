@@ -24,7 +24,6 @@ h1{
     height: 500px;
     flex-direction: column;
     margin-top: 70px;
-    
 }
 .item2 {
     height: 180px;
@@ -34,4 +33,18 @@ h1{
 .item3 {
     padding-top: 40px;
     text-align: center;
+}
+.createUser button{
+    padding: 5px 10px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.createUser button:hover {
+    background-color: #0056b3;
 }

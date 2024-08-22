@@ -1,0 +1,87 @@
+.createUserMainContainer {
+  height: 100%;
+  width: 100%;
+  place-items: center; 
+  display: flex;
+  flex-direction: column;
+}
+
+.createUserMainContainer > h2 {
+  margin-top: 3rem;
+  justify-content: center;
+  color: #020360;
+}
+
+.createUserContainer{
+  background-color: #cae0ee;
+  width: 400px;
+  border-radius: 20px;
+  display: flex;
+  height: auto;
+  padding-bottom: 30px;
+  flex-direction: column;
+  margin-top: 40px;
+}
+
+.createUser-form-container {
+    padding-left: 10px;
+    padding-right: 10px;
+    max-width: 400px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: auto;
+  }
+
+  .createUser-form-container > h2 {
+      color: #020047;
+      padding-top: 20px;
+      padding-bottom: 10px;
+  }
+
+  .createUser-form-container > img {
+      width: 10rem;
+      padding-top: 20px;
+      padding-bottom: 20px;
+  }
+
+  .form-createUser-group {
+    margin-bottom: 25px;
+  }
+  
+  .form-createUser-group > label {
+    font-weight: bold;
+  }
+  
+  .form-createUser-group > input[type="text"],
+  .form-createUser-group > input[type="password"]{
+    margin-top: 10px;
+    width: 95%;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .createUser-form > button {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 15px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    display: flex;
+    align-self: center;
+    margin-bottom: 20px;
+  }
+  
+  .createUser-form > button:hover {
+    background-color: #0056b3;
+  }
+  .createUserLink {
+    text-decoration: none;
+    color: #0056b3;
+  }
+  

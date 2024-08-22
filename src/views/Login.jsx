@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import userImg from '../assets/img/usuario.png';
 import InputComponent from '../components/InputComponent';
 import '../styles/loginStyle.css';
@@ -7,11 +7,18 @@ import ButtonComponent from '../components/ButtonComponent';
 import HeaderComponent from '../components/HeaderComponent';
 import { useNavigate } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
-import axios from 'axios';
+import { DataContext } from '../context/DataContext.jsx';
 
 const URILogin = 'http://localhost:8000/users';
 
 export default function Login({login , logout}) {
+  
+  const { getUser, deleteData } = useContext( DataContext );
+
+  useEffect(() => {
+    deleteData();
+  }, []);
+
 
   const [user, setUser] = useState('');
   const [password, setPassword] = useState('');
@@ -30,18 +37,6 @@ export default function Login({login , logout}) {
 
   const passwordChange = (e) => {
     setPassword(e.target.value);
-  };
-
-  const loginControl = async () => {
-    try {
-      const response = await axios.get(`${URILogin}/${user}/${password}`);
-      if (response.data && response.data.length > 0) {
-        login();
-        navigate('/main');
-      }
-    } catch (error) {
-      notifyErrorLogin();
-    }
   };
 
   return (
@@ -83,10 +78,11 @@ export default function Login({login , logout}) {
             height={35}
             width={100}
             margin={40}
-            onClick={loginControl}
+            onClick={() => getUser(user, password)}
           />
         </div>
         <Toaster />
+        <p>¿No tienes cuenta? <a className='createUserLink' href="/create_user">Crear usuario</a></p>
       </div>
     </div>
   );

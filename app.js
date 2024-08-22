@@ -22,9 +22,9 @@ try {
     console.log('Error de conexión', error);
 }
 
-app.get('/', (req,res) => {
-    res.send('Hola mundo')
-});
+// app.get('/', (req,res) => {
+//     res.send('Hola mundo')
+// });
 
 app.listen(8000, () => {
     console.log('Server running in http://localhost:8000/');

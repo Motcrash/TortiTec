@@ -5,8 +5,8 @@ import { createSell, deleteSell, getAllSells, getSell, updateSell } from "../con
 const sellsRouter = express.Router();
 
 // Rutas para acceder a las ventas
-sellsRouter.get('/', getAllSells);
-sellsRouter.get('/:id', getSell);
+sellsRouter.get('/:user_id', getAllSells);
+sellsRouter.get('/:user_id/:id', getSell);
 
 // Rutas para crear una venta
 sellsRouter.post('/', createSell);

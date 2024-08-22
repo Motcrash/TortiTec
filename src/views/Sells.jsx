@@ -8,11 +8,11 @@ import toast, { Toaster } from 'react-hot-toast';
 
 import axios from 'axios';
 import LoaderComponent from '../components/LoaderComponent';
-import { SellsContext } from '../context/SellsContext';
+import { DataContext } from '../context/DataContext';
 
 function Sells() {
 
-  const {sells, setSells, isLoading, URISells} = useContext( SellsContext );
+  const {sells, setSells, sellsLoading, URISells} = useContext( DataContext );
 
   // Toast
   const notifyDeleteSell = () => toast.success('Venta eliminada exitosamente!', { id: 'deleteToast', duration: 1000});
@@ -32,7 +32,7 @@ function Sells() {
 
   return (
     <div>
-      {(isLoading) ? <LoaderComponent/>
+      {(sellsLoading) ? <LoaderComponent/>
       : (
           <div >
             <HeaderComponent />

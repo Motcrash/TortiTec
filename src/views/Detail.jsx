@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
-import { SellsContext } from '../context/SellsContext';
+import { DataContext } from '../context/DataContext';
 import '../styles/detailStyle.css';
 import HeaderComponent from '../components/HeaderComponent';
 import NavBarComponent from '../components/NavBarComponent';
@@ -11,7 +11,7 @@ import moment from 'moment';
 const notifyError = () => toast.error("Ocurrió un error al cargar los datos", { id: "dataError", duration: 1000 });
 
 function Detail() {
-  const { sells, isLoading } = useContext(SellsContext);
+  const { sells, sellLoading } = useContext(DataContext);
   const [sell, setSell] = useState({ details: [] });
 
   let { state } = useLocation();
@@ -31,10 +31,10 @@ function Detail() {
   }
 
   useEffect(() => {
-    if (!isLoading) {
+    if (!sellLoading) {
       getSell();
     }
-  }, [isLoading, sells]);
+  }, [sellLoading, sells]);
 
   const renderDetails = () => {
     return sell.details.map(detail => (
@@ -49,7 +49,7 @@ function Detail() {
 
   return (
     <>
-      {isLoading ? (
+      {sellLoading ? (
         <LoaderComponent />
       ) : (
         <div>

@@ -2,7 +2,9 @@ import ProductsModel from '../models/ProductsModel.js';
 
 export const getAllProducts = async (req, res) => {
     try {
-        const products = await ProductsModel.findAll();
+        const products = await ProductsModel.findAll({
+            where: { user_id: req.params.user_id }
+        });
         res.json(products);
     } catch (error) {
         res.json({ message: error.message });
@@ -12,7 +14,10 @@ export const getAllProducts = async (req, res) => {
 export const getProduct = async (req, res) => {
     try {
         const product = await ProductsModel.findAll({
-            where: {id: req.params.id}
+            where: {
+                user_id: req.params.user_id,
+                id: req.params.id,
+            }
         });
         res.json(product);
     } catch (error) {

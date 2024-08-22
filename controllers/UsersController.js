@@ -19,7 +19,8 @@ export const getUser = async (req, res) => {
 }
 export const createUser = async(req, res) => {
     try {
-        UsersModel.create(req.body);
+        await UsersModel.create(req.body);
+        res.json({ "message": "Registro creado exitosamente" });
     } catch (error) {
         res.json({ message: error.message });
     }

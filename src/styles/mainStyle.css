@@ -135,13 +135,13 @@ table{
     cursor: pointer;
 }
 
+.product button:hover {
+    background-color: #0056b3;
+}
+
 .product-out-of-stock button {
   background-color: #959ea7;
   cursor: not-allowed;
-}
-
-.product button:hover {
-    background-color: #0056b3;
 }
 
 .product-out-of-stock button:hover {

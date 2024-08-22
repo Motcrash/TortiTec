@@ -3,7 +3,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 
-import { ProductsContext } from "../context/ProductsContext";
+import { DataContext } from "../context/DataContext";
 import "../styles/addProductStyle.css";
 import HeaderComponent from "../components/HeaderComponent";
 import NavBarComponent from "../components/NavBarComponent";
@@ -14,13 +14,13 @@ const notifyCancel = () => toast.success("Modificaciones canceladas", { id: "can
 const notifyError = () => toast.error("Oucrrió un error al cargar los datos", { id: "dataError", duration: 1000 });
 
 const EditProduct = () => {
-  const { products, getProducts, isLoading, URIProducts } = useContext(ProductsContext);
+  const { products, getProducts, productsLoading, URIProducts, credential } = useContext(DataContext);
 
   useEffect(() => {
-    if (!isLoading) {
+    if (!productsLoading) {
       getProduct();
     }
-  }, [isLoading]);
+  }, [productsLoading]);
 
 
   let { state } = useLocation();
@@ -75,14 +75,14 @@ const EditProduct = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`${URIProducts}${id}`, {
+      await axios.put(`${URIProducts}/${id}`, {
         title: name,
         description: description,
         price: price,
         stock: quantity,
         image: image,
       });
-      getProducts();
+      getProducts(credential.id);
       notifyCreate();
     } catch {
       notifyError();
@@ -96,7 +96,7 @@ const EditProduct = () => {
 
   return (
     <>
-      {isLoading ? (
+      {productsLoading ? (
         <LoaderComponent />
       ) : (
         <div>

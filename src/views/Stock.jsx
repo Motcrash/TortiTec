@@ -7,11 +7,11 @@ import HeaderComponent from '../components/HeaderComponent'
 import NavBarComponent from '../components/NavBarComponent'
 import LoaderComponent from '../components/LoaderComponent';
 import '../styles/stockStyle.css'
-import { ProductsContext } from '../context/ProductsContext';
+import { DataContext } from '../context/DataContext';
 
 function Stock() {;
 
-    const {products, setProducts, isLoading, URIProducts} = useContext(ProductsContext);
+    const {products, setProducts, productsLoading, URIProducts} = useContext(DataContext);
 
     const noifyDeactivate = () => toast.success('Producto desactivado con exito', { id: 'deactivate', duration: 1000});
     const notifyActivate = () => toast.success('Producto activado con exito', { id: 'activate', duration: 1000});
@@ -22,7 +22,7 @@ function Stock() {;
         prod.id === product.id ? { ...prod, stock: prod.stock + 1 } : prod
       );
       setProducts(updatedProducts);
-      await axios.put(`${URIProducts}${product.id}`, {
+      await axios.put(`${URIProducts}/${product.id}`, {
         stock: product.stock + 1
       })
     };
@@ -32,7 +32,7 @@ function Stock() {;
         prod.id === product.id ? { ...prod, stock: prod.stock - 1 } : prod
       );
       setProducts(updatedProducts);
-      await axios.put(`${URIProducts}${product.id}`, {
+      await axios.put(`${URIProducts}/${product.id}`, {
         stock: product.stock - 1
       })
     };
@@ -43,7 +43,7 @@ function Stock() {;
         ? { ...prod, isActive: false } : prod
       );
       setProducts(updatedProducts);
-      await axios.put(`${URIProducts}${product.id}`, {
+      await axios.put(`${URIProducts}/${product.id}`, {
         isActive: false
       })
       noifyDeactivate();
@@ -55,16 +55,16 @@ function Stock() {;
         ? { ...prod, isActive: true } : prod
       );
       setProducts(updatedProducts);
-      await axios.put(`${URIProducts}${product.id}`, {
+      await axios.put(`${URIProducts}/${product.id}`, {
         isActive: true
       })
-      const activateToast = notifyActivate();
+      notifyActivate();
     };
 
     const deleteProduct = async (id) => {
       const updatedProducts = products.filter(product => product.id !== id);
       setProducts(updatedProducts);
-      axios.delete(`${URIProducts}${id}`);
+      axios.delete(`${URIProducts}/${id}`);
       notifyDeleted();
     };
 
@@ -138,7 +138,7 @@ function Stock() {;
       
   return (
     <div>
-      {isLoading ? (<LoaderComponent/>)
+      {productsLoading ? (<LoaderComponent/>)
       : (
         <div>
           <HeaderComponent />

@@ -5,7 +5,9 @@ import SellsModel from '../models/SellsModel.js';
 // Mostrar todo
 export const getAllSells = async(req, res) => {
     try {
-        const sells = await SellsModel.findAll();
+        const sells = await SellsModel.findAll({
+            where: { user_id: req.params.user_id }
+        });
         res.json(sells);
     } catch (error) {
         res.json({ message: error.message });
@@ -16,7 +18,10 @@ export const getAllSells = async(req, res) => {
 export const getSell = async(req, res) => {
     try {
         const sell = await SellsModel.findAll({
-            where: { id: req.params.id }
+            where: { 
+                user_id: req.params.user_id,
+                id: req.params.id 
+            }
         });
         res.json(sell[0]);
 

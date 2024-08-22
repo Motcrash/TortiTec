@@ -8,7 +8,7 @@ import HeaderComponent from '../components/HeaderComponent';
 import NavBarComponent from '../components/NavBarComponent';
 
 import noImage from '../assets/img/default-image.png';
-import { ProductsContext } from '../context/ProductsContext';
+import { DataContext } from '../context/DataContext';
 
 const notifyCreate = () => toast.success('Producto creado exitosamente', { id: 'created', duration: 1000});
 const notifyCancel = () => toast.success('Producto cancelado', { id: 'canceled', duration: 1000});
@@ -16,7 +16,7 @@ const notifyError = () => toast.error('No se ha podido crear el producto', { id:
 
 const AddProduct = () => {
 
-  const {URIProducts, getProducts} = useContext( ProductsContext );
+  const {URIProducts, getProducts, credential} = useContext( DataContext );
 
   useEffect(() => {
     convertDefaultImageTo64();
@@ -74,13 +74,14 @@ const AddProduct = () => {
     e.preventDefault();
     try {
       await axios.post(`${URIProducts}`, {
+        user_id: credential.id,
         title: productName,
         description: description,
         price: price,
         stock: quantity,
         image: (image === null || image == noFotoImg) ? defaultImage : image,
       });
-      getProducts();
+      getProducts(credential.id);
       notifyCreate();
       clearProduct();
     } catch {
